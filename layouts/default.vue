@@ -11,7 +11,7 @@
           class="flex-1 p-4 border-l border-gray-500 leading-tight font-light text-3xl sm:text-4xl"
         >
           <nuxt-link to="/"
-            >Innovation<br />
+            >BigData4Tourism<br />
             Scoreboard</nuxt-link
           >
         </div>
@@ -40,7 +40,7 @@
       >
         <div class="m-4 md:m-5 flex flex-col">
           <div class="mb-3 text-base md:text-2xl font-bold">
-            &copy; {{ year }} DAVINCI - a project form NOI Techpark
+            &copy; {{ year }} BigData4Tourism - a project form NOI Techpark
           </div>
           <div
             class="flex flex-col sm:flex-row leading-relaxed text-xs md:text-base"
@@ -67,8 +67,12 @@
           >
             <div class="text-left xl:text-right text-xs md:text-lg font-bold">
               Developed by
-              <a href="https://aboutbits.it" class="hover:underline"
-                >About Bits</a
+              <a href="https://rmb.bz.it/" class="hover:underline"
+                >Martin Rabanser</a
+              >
+              and
+              <a href="https://gappc.net" class="hover:underline"
+                >Christian Gapp</a
               >
             </div>
           </div>

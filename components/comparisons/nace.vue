@@ -152,13 +152,7 @@ export default {
       })
     },
     dataFromSelectedYear() {
-      const data = this.$store.getters['metrics/getDataByNace'](this.index)
-
-      return data.IT.find((year) => {
-        return year.year === this.selectedYear
-      }).groups.find((g) => {
-        return g.id === 'ATECO_2007'
-      }).values
+      return {}
     },
     groupsWithValue() {
       return this.nace.map((group) => {

@@ -10,6 +10,6 @@ services:
     command: npm run dev
     environment:
       HOST: 0.0.0.0
-      API: 'http://localhost:8080/v1/'
+      ES_HOST: "https://bigdata4tourism.davinci.bz.it/elasticsearch/"
     ports:
       - "3000:3000"

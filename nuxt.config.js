@@ -1,10 +1,10 @@
 export default {
   mode: 'spa',
   env: {
-    api: process.env.API || 'http://localhost:8080/v1/'
+    esHost: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
   },
   head: {
-    title: 'Innovation Scoreboard',
+    title: 'Tourism Scoreboard',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -38,28 +38,7 @@ export default {
     '@nuxtjs/pwa'
   ],
   axios: {
-    baseURL: process.env.API || 'http://localhost:8080/v1/'
-  },
-  router: {
-    middleware: ['auth']
-  },
-  auth: {
-    redirect: {
-      login: '/login',
-      logout: '/login',
-      home: '/admin'
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: 'authenticate', method: 'post', propertyName: 'token' },
-          user: false,
-          logout: false
-
-        }
-      }
-    },
-    resetOnError: true
+    baseURL: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
   },
   purgeCSS: {
     whitelist: [

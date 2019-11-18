@@ -9,7 +9,7 @@ export const state = () => ({
     territories: false
   },
   territories,
-  selectedTerritories: ['IT', 'ITD', 'ITD1', 'ITD2', 'ITD3', 'ITC4'],
+  selectedTerritories: [],
   nace,
   metrics,
   openMetric: null
@@ -95,83 +95,14 @@ export const actions = {
     try {
       commit('loadingMetrics')
 
-      const request0 = this.$axios(
-        '/statistics/enterprises-with-innovation-activities-divided-by-territory'
-      )
+      const request0 = this.$axios('/tourism-nifi_2020/_count?q=booking:true')
 
-      const request1 = this.$axios(
-        '/statistics/enterprises-that-have-introduced-product-or-process-innovations-divided-by-territory'
-      )
-
-      const request2 = this.$axios(
-        '/statistics/innovation-expenditure-divided-by-territory'
-      )
-
-      const request3 = this.$axios(
-        '/statistics/innovation-expenditure-per-number-of-persons-employed-divided-by-territory'
-      )
-
-      const request4 = this.$axios(
-        '/statistics/research-and-development-personnel-in-house-divided-by-territory'
-      )
-
-      const request5 = this.$axios(
-        '/statistics/domestic-research-and-development-expenditure-in-house-divided-by-territory'
-      )
-
-      const request6 = this.$axios(
-        '/statistics/enterprises-with-innovation-activities-in-italy-divided-by-nace'
-      )
-
-      const request7 = this.$axios(
-        '/statistics/enterprises-that-have-introduced-product-or-process-innovations-in-italy-divided-by-nace'
-      )
-
-      const request8 = this.$axios(
-        '/statistics/innovation-expenditure-in-italy-divided-by-nace'
-      )
-
-      const responses = await Promise.all([
-        request0,
-        request1,
-        request2,
-        request3,
-        request4,
-        request5,
-        request6,
-        request7,
-        request8
-      ])
+      const responses = await Promise.all([request0])
 
       commit('metricLoaded', {
         id: 'metric0',
         dataByTerritory: responses[0].data.statistics,
         dataByNace: responses[6].data.statistics
-      })
-      commit('metricLoaded', {
-        id: 'metric1',
-        dataByTerritory: responses[1].data.statistics,
-        dataByNace: responses[7].data.statistics
-      })
-      commit('metricLoaded', {
-        id: 'metric2',
-        dataByTerritory: responses[2].data.statistics,
-        dataByNace: responses[8].data.statistics
-      })
-      commit('metricLoaded', {
-        id: 'metric3',
-        dataByTerritory: responses[3].data.statistics,
-        dataByNace: null
-      })
-      commit('metricLoaded', {
-        id: 'metric4',
-        dataByTerritory: responses[4].data.statistics,
-        dataByNace: null
-      })
-      commit('metricLoaded', {
-        id: 'metric5',
-        dataByTerritory: responses[5].data.statistics,
-        dataByNace: null
       })
 
       commit('metricsLoaded')
