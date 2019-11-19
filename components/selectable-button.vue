@@ -1,8 +1,8 @@
 <template>
   <button
-    class="px-4 py-2 border-3 uppercase"
     :class="style"
     @click="click(value)"
+    class="px-4 py-2 border-3 uppercase"
   >
     {{ text }}
   </button>

@@ -1,12 +1,12 @@
 <template>
   <div
-    class="mt-5 md:mt-6 px-4 xl:px-0 flex flex-col justify-end"
     :class="{
       'w-full': isMetricOpen,
       'w-full xl:w-1/2': isMetricClose,
       'xl:pl-4 xl:pr-0': showLeftPadding,
       'xl:pl-0 xl:pr-4': showRightPadding
     }"
+    class="mt-5 md:mt-6 px-4 xl:px-0 flex flex-col justify-end"
   >
     <div
       class="border-b-2 border-black font-bold text-xl md:text-2xl uppercase"
@@ -15,8 +15,8 @@
     </div>
     <div class="flex justify-between py-2 border-b border-gray-500 ">
       <div
-        class="mb-1 leading-none font-light text-5xl sm:text-6xl md:text-8xl"
         :class="['text-' + metric.id + '-500']"
+        class="mb-1 leading-none font-light text-5xl sm:text-6xl md:text-8xl"
       >
         <CountUp
           :number="metric.value"
@@ -28,8 +28,8 @@
       <div class="mt-1 flex flex-col justify-center">
         <button
           v-if="isMetricClose"
-          class="hover:text-gray-500"
           @click.prevent="openMetric(index)"
+          class="hover:text-gray-500"
         >
           <OpenIcon class="icon fill-current" />
           <span class="sr-only">Open metric</span>
@@ -37,8 +37,8 @@
 
         <button
           v-if="isMetricOpen"
-          class="hover:text-gray-500"
           @click.prevent="closeMetric(index)"
+          class="hover:text-gray-500"
         >
           <CloseIcon class="icon fill-current" />
           <span class="sr-only">Close metric</span>
