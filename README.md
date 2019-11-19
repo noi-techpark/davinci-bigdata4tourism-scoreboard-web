@@ -1,8 +1,8 @@
-# Innovation Scoreboard
+# Tourism Scoreboard
 
-The innovation scoreboard is a project that aims to visualize the innovation data form South Tyrol and other Italien regions in a user friendly way.
+The tourism scoreboard is a project that aims to visualize the BigData4Tourism data form South Tyrol in a user friendly way.
 
-This repository contains the source code for the innovation scoreboard frontend.
+This repository contains the source code for the tourism scoreboard frontend.
 
 ## Table of contents
 
@@ -30,22 +30,14 @@ If you don't want to install all prerequisites directly on your machine and inst
 Get a copy of the repository:
 
 ```bash
-git clone https://github.com/noi-techpark/davinci-innovation-scoreboard-web.git
+git clone https://github.com/gappc/tourism-scoreboard-web.git
 ```
 
 Change directory:
 
 ```bash
-cd davinci-innovation-scoreboard-web
+cd gappc/tourism-scoreboard-web
 ```
-
-### Configure
-
-Set the following environment variables to configure the project:
-
-- `API`: the URL of the API server
-
-The defaults are already configured, that the you can use the Docker environment right away without any setup.
 
 ### Dependencies
 
@@ -146,3 +138,7 @@ More documentation can be found at [https://opendatahub.readthedocs.io/en/latest
 ### License
 
 The code in this project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE Version 3 license. See the [LICENSE.md](LICENSE.md) file for more information.
+
+### Acknowledgements
+
+This project is based on the wonderful [Innovation Scoreboard](https://github.com/noi-techpark/davinci-innovation-scoreboard-web), developed by [About Bits](https://aboutbits.it/).

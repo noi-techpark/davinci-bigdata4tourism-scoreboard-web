@@ -7,10 +7,7 @@ pipeline {
     }
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-
-        API = "https://api.innovation.davinci.bz.it/v1/"
+        ES_HOST = "https://bigdata4tourism.davinci.bz.it/elasticsearch/"
     }
 
     stages {
@@ -31,7 +28,7 @@ pipeline {
         }
         stage('Upload') {
             steps {
-                s3Upload(bucket: 'prod-innovation-web', acl: 'PublicRead', file: './dist')
+                s3Upload(bucket: 'prod-tourism-web', acl: 'PublicRead', file: './dist')
             }
         }
     }

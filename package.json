@@ -1,7 +1,7 @@
 {
-  "name": "innovation-scoreboard",
+  "name": "tourism-scoreboard",
   "version": "1.0.0",
-  "description": "All Statistical Innovation Data for South Tyrol",
+  "description": "Tourism scoreboard for BigData4Tourism visualization",
   "author": "",
   "private": true,
   "scripts": {
