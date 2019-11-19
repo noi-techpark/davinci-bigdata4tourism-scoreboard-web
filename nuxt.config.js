@@ -34,7 +34,8 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-leaflet',
   ],
   axios: {
     baseURL: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
