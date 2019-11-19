@@ -1,9 +1,9 @@
 <template>
   <div class="select-year relative text-black hover:text-gray-500">
     <select
-      class="block appearance-none w-full py-3 px-4 leading-tight text-xl focus:outline-none cursor-pointer"
       :value="selectedYear"
       @change="change"
+      class="block appearance-none w-full py-3 px-4 leading-tight text-xl focus:outline-none cursor-pointer"
     >
       <option v-for="year in years" :key="year" :value="year">{{
         year

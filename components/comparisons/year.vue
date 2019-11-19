@@ -18,7 +18,7 @@
     </div>
 
     <div class="mt-5 pb-2 overflow-x-scroll md:overflow-auto">
-      <YearChart :chart-data="data" class="chart" :y-axix-unit="metric.unit" />
+      <YearChart :chart-data="data" :y-axix-unit="metric.unit" class="chart" />
     </div>
   </div>
 </template>

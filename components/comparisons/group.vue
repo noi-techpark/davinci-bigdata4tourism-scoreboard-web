@@ -28,8 +28,8 @@
     >
       <GroupChart
         :chart-data="data"
-        class="chart"
         :style="{ height: data.datasets[0].data.length * 80 + 'px' }"
+        class="chart"
       />
     </div>
 
@@ -40,10 +40,10 @@
         class="ml-4 mb-2 flex items-center font-thin uppercase"
       >
         <div
-          class="mr-2 w-3 h-3"
           :style="{
             'background-color': item.color
           }"
+          class="mr-2 w-3 h-3"
         />
         {{ item.name }}
       </div>

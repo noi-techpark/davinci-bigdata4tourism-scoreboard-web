@@ -38,14 +38,14 @@
             class="my-3 mr-3 w-full sm:w-1/3 md:w-1/4"
           >
             <button
-              class="text-left"
               :class="group.class"
               @click="markGroup(group.id)"
+              class="text-left"
             >
               {{ group.name }}
             </button>
             <br />
-            <span class="font-bold" :class="'text-' + metric.id + '-500'">{{
+            <span :class="'text-' + metric.id + '-500'" class="font-bold">{{
               group.value
             }}</span>
           </div>
@@ -60,14 +60,14 @@
             class="my-3 mr-3 w-full sm:w-1/3 md:w-1/4"
           >
             <button
-              class="text-left"
               :class="subgroup.class"
               @click="markSubgroup(subgroup.id)"
+              class="text-left"
             >
               {{ subgroup.name }}
             </button>
             <br />
-            <span class="font-bold" :class="'text-' + metric.id + '-500'">{{
+            <span :class="'text-' + metric.id + '-500'" class="font-bold">{{
               subgroup.value
             }}</span>
           </div>

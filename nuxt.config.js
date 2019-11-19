@@ -28,12 +28,11 @@ export default {
     '~/plugins/filters',
     '~/plugins/portal',
   ],
-  devModules: [
+  buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss'
   ],
   modules: [
-    '@nuxtjs/auth',
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ],

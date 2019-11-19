@@ -1,8 +1,8 @@
 <template>
   <div class="p-5 flex justify-center bg-gray-300">
     <form
-      class="login__container mx-2 my-4 xl:mx-0 p-5 border-3 border-black bg-white"
       @submit.prevent="login"
+      class="login__container mx-2 my-4 xl:mx-0 p-5 border-3 border-black bg-white"
     >
       <div class="mb-5">
         <img src="~/assets/images/login.png" alt="Login" class="login__image" />
@@ -44,9 +44,9 @@
         </div>
         <div v-else />
         <button
+          :disabled="sending"
           type="submit"
           class="px-4 py-2 border-3 border-black hover:bg-black hover:text-white uppercase"
-          :disabled="sending"
         >
           Login
         </button>
