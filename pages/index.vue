@@ -25,7 +25,6 @@
 import Metric from '@/components/metric.vue'
 
 export default {
-  auth: false,
   components: {
     Metric
   },
