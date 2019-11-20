@@ -26,6 +26,7 @@ export default {
   ],
   plugins: [
     '~/plugins/axios',
+    '~/plugins/es-client',
     '~/plugins/filters',
     '~/plugins/portal',
     '~/plugins/vue2-leaflet-markercluster.js',
