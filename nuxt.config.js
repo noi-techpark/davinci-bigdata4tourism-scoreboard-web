@@ -21,12 +21,14 @@ export default {
   },
   loading: { color: '#fff' },
   css: [
-    '~/css/main.css'
+    '~/css/main.css',
+    '~/assets/css/vue2-leaflet-markercluster.css',
   ],
   plugins: [
     '~/plugins/axios',
     '~/plugins/filters',
     '~/plugins/portal',
+    '~/plugins/vue2-leaflet-markercluster.js',
   ],
   buildModules: [
     '@nuxtjs/eslint-module',
