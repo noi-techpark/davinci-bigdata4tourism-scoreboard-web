@@ -5,10 +5,31 @@
         <div
           class="px-4 py-2 title-text leading-tight font-thin text-4xl md:text-6xl lg:text-7xl text-black uppercase"
         >
-          All Statistical Innovation Data for South Tyrol
+          Big data for Tourism - South Tyrol
         </div>
       </div>
     </div>
+
+    <Tabs>
+      <Tab :selected="true" name="Requests, Bookings, Cancellations">
+        <h1>Requests, Bookings, Cancellations</h1>
+      </Tab>
+      <Tab name="Time until arrival">
+        <h1>Time until arrival</h1>
+      </Tab>
+      <Tab name="Accommodation category">
+        <h1>Accommodation category</h1>
+      </Tab>
+      <Tab name="Family situation">
+        <h1>Family situation</h1>
+      </Tab>
+      <Tab name="Countries of origin">
+        <h1>Countries of origin</h1>
+      </Tab>
+      <Tab name="Target areas">
+        <h1>Target areas</h1>
+      </Tab>
+    </Tabs>
 
     <div v-if="loaded" class="flex flex-wrap">
       <Metric
@@ -23,10 +44,14 @@
 
 <script>
 import Metric from '@/components/metric.vue'
+import Tabs from '@/components/tabs/tabs.vue'
+import Tab from '@/components/tabs/tab.vue'
 
 export default {
   components: {
-    Metric
+    Metric,
+    Tabs,
+    Tab
   },
   computed: {
     loaded() {
