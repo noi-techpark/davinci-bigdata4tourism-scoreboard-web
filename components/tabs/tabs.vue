@@ -65,15 +65,10 @@ export default {
       return tab.isActive
         ? `border-metric${index}-500 text-metric${index}-500`
         : `hover:border-metric${index}-500 hover:text-metric${index}-500`
-      // : `hover:bg-metric${index}-500 hover:text-metric${index}-500`
     },
     selectOption(e) {
       if (e.target.options.selectedIndex > -1) {
-        console.log(event.target.value)
         this.selectTab({ name: event.target.value })
-        // console.log(
-        //   e.target.options[e.target.options.selectedIndex].dataset.foo
-        // )
       }
     },
     selectTab(selectedTab) {

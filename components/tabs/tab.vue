@@ -5,8 +5,14 @@
 <script>
 export default {
   props: {
-    name: { required: true },
-    selected: { default: false }
+    name: {
+      type: String,
+      required: true
+    },
+    selected: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
@@ -17,7 +23,13 @@ export default {
 
   computed: {
     href() {
-      return '#' + this.name.toLowerCase().replace(/ /g, '-')
+      return (
+        '#' +
+        this.name
+          .toLowerCase()
+          .replace(/[^\w!?]/g, '-')
+          .replace(/-(-)*/g, '-')
+      )
     }
   },
 
