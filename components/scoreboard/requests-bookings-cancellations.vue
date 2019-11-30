@@ -42,7 +42,7 @@ export default {
       return [
         {
           title: 'Total',
-          value: this.metric.results[0][reqBookCancel.propTotal].value
+          value: total
         },
         {
           decimalPlaces: 2,

@@ -30,41 +30,67 @@ import Gauge from '@/components/charts/gauge.vue'
 
 import * as familySituation from '@/meta/elasticsearch/family-situation'
 
+const percentage = (total, value) => (total !== 0 ? (100.0 / total) * value : 0)
+
 export default {
   components: {
     Gauge
   },
   computed: {
     gauges() {
+      const total = this.metric.results[0][familySituation.propTotal].value
       return [
         {
           title: 'Total',
           value: this.metric.results[0][familySituation.propTotal].value
         },
         {
+          decimalPlaces: 2,
           title: 'Unaccompanied',
-          value: this.metric.results[0][familySituation.propUnaccompanied].value
+          value: percentage(
+            total,
+            this.metric.results[0][familySituation.propUnaccompanied].value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Groups without children',
-          value: this.metric.results[0][
-            familySituation.propGroupsWithoutChildren
-          ].value
+          value: percentage(
+            total,
+            this.metric.results[0][familySituation.propGroupsWithoutChildren]
+              .value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Couples without children',
-          value: this.metric.results[0][
-            familySituation.propCouplesWithoutChildren
-          ].value
+          value: percentage(
+            total,
+            this.metric.results[0][familySituation.propCouplesWithoutChildren]
+              .value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Singles with children',
-          value: this.metric.results[0][familySituation.propSinglesWithChildren]
-            .value
+          value: percentage(
+            total,
+            this.metric.results[0][familySituation.propSinglesWithChildren]
+              .value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Families',
-          value: this.metric.results[0][familySituation.propFamilies].value
+          value: percentage(
+            total,
+            this.metric.results[0][familySituation.propFamilies].value
+          ),
+          unit: '%'
         }
       ]
     },

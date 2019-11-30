@@ -30,38 +30,64 @@ import Gauge from '@/components/charts/gauge.vue'
 
 import * as accomodationCategory from '@/meta/elasticsearch/accomodation-category'
 
+const percentage = (total, value) => (total !== 0 ? (100.0 / total) * value : 0)
+
 export default {
   components: {
     Gauge
   },
   computed: {
     gauges() {
+      const total = this.metric.results[0][accomodationCategory.propTotal].value
       return [
         {
           title: 'Total',
-          value: this.metric.results[0][accomodationCategory.propTotal].value
+          value: total
         },
         {
+          decimalPlaces: 2,
           title: 'Private accomodations',
-          value: this.metric.results[0][accomodationCategory.propPrivate].value
+          value: percentage(
+            total,
+            this.metric.results[0][accomodationCategory.propPrivate].value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Farms',
-          value: this.metric.results[0][accomodationCategory.propFarms].value
+          value: percentage(
+            total,
+            this.metric.results[0][accomodationCategory.propFarms].value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Others',
-          value: this.metric.results[0][accomodationCategory.propOthers].value
+          value: percentage(
+            total,
+            this.metric.results[0][accomodationCategory.propOthers].value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Hotel 1-3 stars',
-          value: this.metric.results[0][accomodationCategory.propHotel1to3]
-            .value
+          value: percentage(
+            total,
+            this.metric.results[0][accomodationCategory.propHotel1to3].value
+          ),
+          unit: '%'
         },
         {
+          decimalPlaces: 2,
           title: 'Hotel 4-5 stars',
-          value: this.metric.results[0][accomodationCategory.propHotel4to5]
-            .value
+          value: percentage(
+            total,
+            this.metric.results[0][accomodationCategory.propHotel4to5].value
+          ),
+          unit: '%'
         }
       ]
     },
