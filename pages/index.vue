@@ -10,6 +10,8 @@
       </div>
     </div>
 
+    <GlobalFilter></GlobalFilter>
+
     <Tabs
       :selectedIndex="selectedIndex"
       :tabs="tabs"
@@ -23,10 +25,12 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import GlobalFilter from '@/components/global-filter.vue'
 import Tabs from '@/components/tabs/tabs.vue'
 
 export default {
   components: {
+    GlobalFilter,
     Tabs
   },
   computed: {

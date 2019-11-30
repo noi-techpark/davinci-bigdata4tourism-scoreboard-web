@@ -12,7 +12,10 @@ export const state = () => ({
   selectedTerritories: [],
   nace,
   metrics,
-  openMetric: 0
+  openMetric: 0,
+  globalFilters: {
+    visible: false
+  }
 })
 
 export const getters = {
@@ -55,6 +58,9 @@ export const getters = {
 }
 
 export const mutations = {
+  globalFiltersVisible(state, { visible }) {
+    state.globalFilters = { ...state.globalFilters, visible }
+  },
   loadMetric(state, { index }) {
     const metrics = state.metrics
     metrics[index].loading = true
@@ -140,6 +146,10 @@ export const actions = {
         message: err.message ? err.message : err
       })
     }
+  },
+  toggleGlobalFiltersVisibility({ commit, state }) {
+    const visible = !state.globalFilters.visible
+    commit('globalFiltersVisible', { visible })
   },
   selectTerritories({ commit }, selectedTerritories) {
     commit('selectTerritories', selectedTerritories)

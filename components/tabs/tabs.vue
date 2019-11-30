@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list-reset hidden flex lg:flex border-b mt-5">
+    <ul class="list-reset hidden flex lg:flex border-b">
       <li
         v-for="(tab, index) in tabs"
         :key="tab.name"
