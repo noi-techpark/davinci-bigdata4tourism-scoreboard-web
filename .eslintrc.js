@@ -12,11 +12,12 @@ module.exports = {
     'prettier',
     'prettier/vue',
     'plugin:prettier/recommended',
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
   ],
   plugins: [
     'prettier'
   ],
   rules: {
+    'standard/computed-property-even-spacing': 0
   }
 }
