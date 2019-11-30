@@ -30,6 +30,7 @@ export default {
     '~/plugins/es-client',
     '~/plugins/filters',
     '~/plugins/portal',
+    '~/plugins/register-metrics',
     '~/plugins/vue2-leaflet-markercluster.js',
   ],
   buildModules: [

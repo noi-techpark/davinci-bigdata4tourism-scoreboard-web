@@ -12,10 +12,18 @@ export const state = () => ({
   selectedTerritories: [],
   nace,
   metrics,
-  openMetric: null
+  openMetric: 0
 })
 
 export const getters = {
+  currentMetric: (state) => {
+    const openMetric = state.openMetric
+    return state.metrics[openMetric]
+  },
+  currentComponent: (state) => {
+    const openMetric = state.openMetric
+    return state.metrics[openMetric].component
+  },
   isMetricOpen: (state) => (index) => {
     return state.openMetric === index
   },
@@ -47,31 +55,27 @@ export const getters = {
 }
 
 export const mutations = {
-  loadingMetrics(state) {
-    state.loaded = true
+  loadMetric(state, { index }) {
+    const metrics = state.metrics
+    metrics[index].loading = true
+    metrics[index].loaded = false
+    metrics[index].loadError = null
+    state.metrics = [...metrics]
   },
-  metricsLoaded(state) {
-    state.loaded = true
+  loadMetricError(state, { index, message }) {
+    const metrics = state.metrics
+    state.metrics[index].loading = false
+    state.metrics[index].loaded = false
+    state.metrics[index].loadError = message
+    state.metrics = [...metrics]
   },
-  metricLoaded(state, { id, dataByTerritory, dataByNace }) {
-    state.metrics.forEach((metric) => {
-      if (metric.id !== id) return
-
-      metric.dataByTerritory = dataByTerritory
-      metric.dataByNace = dataByNace
-
-      const latest = dataByTerritory.ITD1.reduce(
-        (previousValue, currentValue) => {
-          if (parseInt(previousValue.year) > parseInt(currentValue.year)) {
-            return previousValue
-          } else {
-            return currentValue
-          }
-        }
-      )
-
-      metric.value = latest.total
-    })
+  metricLoaded(state, { index, results }) {
+    const metrics = state.metrics
+    metrics[index].loading = false
+    metrics[index].loaded = true
+    metrics[index].loadError = null
+    metrics[index].results = results
+    state.metrics = [...metrics]
   },
   startRepaint(state, part) {
     state.repaint[part] = true
@@ -91,22 +95,51 @@ export const mutations = {
 }
 
 export const actions = {
-  async load({ commit }) {
+  async loadMetric({ commit, state }, { metric, queries, mappers }) {
+    if (metric.loaded || metric.loading) return
+
+    const id = metric.id
+    const index = state.metrics.findIndex((m) => m.id === id)
+
     try {
-      commit('loadingMetrics')
+      commit('loadMetric', { index })
 
-      const request0 = this.$axios('/tourism-nifi_2020/_count?q=booking:true')
+      if (queries.length !== mappers.length) {
+        commit('loadMetricError', {
+          index,
+          message: `The number of queries (${queries.length}) and mappers (${mappers.length}) differ`
+        })
+      }
+      if (metric.loaded === true) {
+        return
+      }
 
-      const responses = await Promise.all([request0])
+      const responses = await this.$esClient.msearch(queries)
+      const responseData = responses.data.responses
 
-      commit('metricLoaded', {
-        id: 'metric0',
-        dataByTerritory: responses[0].data.statistics,
-        dataByNace: responses[6].data.statistics
+      if (responseData.length !== queries.length) {
+        commit('loadMetricError', {
+          index,
+          message: `The number of queries (${queries.length}) and responses (${responseData.length}) differ`
+        })
+        return
+      }
+
+      const results = []
+      for (let i = 0; i < responseData.length; i++) {
+        const response = responseData[i]
+        const mapper = mappers[i]
+        const result = mapper(response)
+        results.push(result)
+      }
+
+      commit('metricLoaded', { index, results })
+    } catch (err) {
+      commit('loadMetricError', {
+        index,
+        message: err.message ? err.message : err
       })
-
-      commit('metricsLoaded')
-    } catch (e) {}
+    }
   },
   selectTerritories({ commit }, selectedTerritories) {
     commit('selectTerritories', selectedTerritories)
