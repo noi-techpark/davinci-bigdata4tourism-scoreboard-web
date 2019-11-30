@@ -3,12 +3,12 @@
     <ul class="list-reset hidden flex lg:flex border-b mt-5">
       <li
         v-for="(tab, index) in tabs"
-        :class="['-mb-px mr-1 ', { 'is-active': tab.isActive }]"
-        :key="index"
+        :key="tab.name"
+        :class="['-mb-px mr-1 ', { 'is-active': index === selectedIndex }]"
       >
         <a
           :href="tab.href"
-          @click="selectTab(tab)"
+          @click.prevent="tabChanges(index)"
           :class="[
             'uppercase inline-block h-full border-black border-2 py-2 px-4 text-xl font-semibold',
             tabClass(tab, index)
@@ -21,13 +21,14 @@
     <!-- Display selectbox for mobile -->
     <div class="relative lg:hidden">
       <select
-        @change="selectOption($event)"
+        @change="tabChanges(parseInt($event.target.value), 0)"
         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
       >
         <option
           v-for="(tab, index) in tabs"
-          :key="index"
-          :selected="tab.isActive"
+          :key="tab.name"
+          :value="index"
+          :selected="index === selectedIndex"
           >{{ tab.name }}</option
         >
       </select>
@@ -45,36 +46,29 @@
         </svg>
       </div>
     </div>
-
-    <div class="tabs-details">
-      <slot></slot>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return { tabs: [] }
-  },
-  created() {
-    this.tabs = this.$children
+  props: {
+    selectedIndex: {
+      type: Number,
+      default: () => 0
+    },
+    tabs: {
+      type: Array,
+      default: () => []
+    }
   },
   methods: {
+    tabChanges(index) {
+      this.$emit('tab-changes', index)
+    },
     tabClass(tab, index) {
-      return tab.isActive
+      return index === this.selectedIndex
         ? `border-metric${index}-500 text-metric${index}-500`
         : `hover:border-metric${index}-500 hover:text-metric${index}-500`
-    },
-    selectOption(e) {
-      if (e.target.options.selectedIndex > -1) {
-        this.selectTab({ name: event.target.value })
-      }
-    },
-    selectTab(selectedTab) {
-      this.tabs.forEach((tab) => {
-        tab.isActive = tab.name === selectedTab.name
-      })
     }
   }
 }
