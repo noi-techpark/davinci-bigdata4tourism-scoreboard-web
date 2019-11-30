@@ -1,7 +1,8 @@
 export default {
   mode: 'spa',
   env: {
-    esHost: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
+    esHost: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/',
+    esIndex: process.env.esIndex || 'tourism-nifi_2020'
   },
   head: {
     title: 'Tourism Scoreboard',
