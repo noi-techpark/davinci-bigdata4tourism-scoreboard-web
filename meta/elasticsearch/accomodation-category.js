@@ -5,7 +5,7 @@ export const propPrivate = 'private'
 export const propOthers = 'others'
 export const propTotal = 'total'
 
-export const queryBuilder = ({ from, to }) => ({
+export const query = {
   aggs: {
     accomodations: {
       filters: {
@@ -39,23 +39,8 @@ export const queryBuilder = ({ from, to }) => ({
       }
     }
   },
-  size: 0,
-  query: {
-    bool: {
-      must: [
-        {
-          range: {
-            submitted_on: {
-              gte: from,
-              lte: to,
-              format: 'epoch_millis'
-            }
-          }
-        }
-      ]
-    }
-  }
-})
+  size: 0
+}
 
 export const resultBuilder = (response) => ({
   [propFarms]: {

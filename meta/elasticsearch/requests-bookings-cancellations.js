@@ -3,7 +3,7 @@ export const propBookings = 'bookings'
 export const propCancellations = 'cancellations'
 export const propTotal = 'total'
 
-export const queryBuilder = ({ from, to }) => ({
+export const query = {
   aggs: {
     reqBookCancel: {
       filters: {
@@ -33,23 +33,8 @@ export const queryBuilder = ({ from, to }) => ({
       }
     }
   },
-  size: 0,
-  query: {
-    bool: {
-      must: [
-        {
-          range: {
-            submitted_on: {
-              gte: from,
-              lte: to,
-              format: 'epoch_millis'
-            }
-          }
-        }
-      ]
-    }
-  }
-})
+  size: 0
+}
 
 export const resultBuilder = (response) => ({
   [propRequests]: {

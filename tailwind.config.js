@@ -39,6 +39,9 @@ module.exports = {
       },
       metric5: {
         '500': 'hsl(25, 74%, 51%)',
+      },
+      filterActive: {
+        '500': 'hsl(25, 74%, 19%)',
       }
     },
     spacing: {
