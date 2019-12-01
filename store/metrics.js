@@ -14,7 +14,11 @@ export const state = () => ({
   metrics,
   openMetric: 0,
   globalFilters: {
-    visible: false
+    families: [],
+    categories: [],
+    types: [],
+    visible: false,
+    years: []
   }
 })
 
@@ -26,6 +30,13 @@ export const getters = {
   currentComponent: (state) => {
     const openMetric = state.openMetric
     return state.metrics[openMetric].component
+  },
+  filterAsMap: (state) => (name) => {
+    const filter = state.globalFilters[name]
+    return filter.reduce((prev, curr) => {
+      prev[curr] = curr
+      return prev
+    }, {})
   },
   isMetricOpen: (state) => (index) => {
     return state.openMetric === index
@@ -62,26 +73,37 @@ export const mutations = {
     state.globalFilters = { ...state.globalFilters, visible }
   },
   loadMetric(state, { index }) {
-    const metrics = state.metrics
+    const metrics = [...state.metrics]
     metrics[index].loading = true
     metrics[index].loaded = false
     metrics[index].loadError = null
-    state.metrics = [...metrics]
+    state.metrics = metrics
   },
   loadMetricError(state, { index, message }) {
-    const metrics = state.metrics
-    state.metrics[index].loading = false
-    state.metrics[index].loaded = false
-    state.metrics[index].loadError = message
-    state.metrics = [...metrics]
+    const metrics = [...state.metrics]
+    metrics[index].loading = false
+    metrics[index].loaded = false
+    metrics[index].loadError = message
+    state.metrics = metrics
   },
   metricLoaded(state, { index, results }) {
-    const metrics = state.metrics
+    const metrics = [...state.metrics]
     metrics[index].loading = false
     metrics[index].loaded = true
     metrics[index].loadError = null
     metrics[index].results = results
-    state.metrics = [...metrics]
+    state.metrics = metrics
+  },
+  resetMetrics(state) {
+    const metrics = [...state.metrics]
+
+    metrics.forEach((metric) => {
+      metric.loading = false
+      metric.loaded = false
+      metric.loadError = null
+      // metric.results = []
+    })
+    state.metrics = metrics
   },
   startRepaint(state, part) {
     state.repaint[part] = true
@@ -95,8 +117,25 @@ export const mutations = {
   closeMetric(state) {
     state.openMetric = null
   },
+  setGlobalFilter(state, { name, values }) {
+    const globalFilters = { ...state.globalFilters }
+    globalFilters[name] = values
+    state.globalFilters = globalFilters
+  },
   selectTerritories(state, selectedTerritories) {
     state.selectedTerritories = selectedTerritories
+  },
+  toggleGlobalFilter(state, { name, value }) {
+    const filter = [...state.globalFilters[name]]
+    const index = filter.findIndex((i) => i === value)
+
+    if (index >= 0) {
+      filter.splice(index, 1)
+    } else {
+      filter.push(value)
+    }
+
+    state.globalFilters[name] = filter
   }
 }
 
@@ -115,9 +154,6 @@ export const actions = {
           index,
           message: `The number of queries (${queries.length}) and mappers (${mappers.length}) differ`
         })
-      }
-      if (metric.loaded === true) {
-        return
       }
 
       const responses = await this.$esClient.msearch(queries)
@@ -146,6 +182,13 @@ export const actions = {
         message: err.message ? err.message : err
       })
     }
+  },
+  setGlobalFilter({ commit }, { name, values }) {
+    commit('setGlobalFilter', { name, values })
+  },
+  toggleGlobalFilter({ commit }, { name, value }) {
+    commit('resetMetrics')
+    commit('toggleGlobalFilter', { name, value })
   },
   toggleGlobalFiltersVisibility({ commit, state }) {
     const visible = !state.globalFilters.visible

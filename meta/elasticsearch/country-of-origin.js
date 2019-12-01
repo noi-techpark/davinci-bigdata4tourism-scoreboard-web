@@ -2,7 +2,7 @@ export const propCountryCount = 'countryCount'
 export const propTopCountries = 'topCountries'
 export const propTotal = 'total'
 
-export const queryBuilder = ({ from, to, size }) => ({
+export const query = {
   aggs: {
     [propCountryCount]: {
       cardinality: {
@@ -12,30 +12,15 @@ export const queryBuilder = ({ from, to, size }) => ({
     [propTopCountries]: {
       terms: {
         field: 'country.name',
-        size,
+        size: 15,
         order: {
           _count: 'desc'
         }
       }
     }
   },
-  size: 0,
-  query: {
-    bool: {
-      must: [
-        {
-          range: {
-            submitted_on: {
-              gte: from,
-              lte: to,
-              format: 'epoch_millis'
-            }
-          }
-        }
-      ]
-    }
-  }
-})
+  size: 0
+}
 
 export const resultBuilder = (response) => ({
   [propCountryCount]: {

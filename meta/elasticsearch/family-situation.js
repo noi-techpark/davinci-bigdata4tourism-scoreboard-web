@@ -5,7 +5,7 @@ export const propSinglesWithChildren = 'singlesWithChildren'
 export const propFamilies = 'families'
 export const propTotal = 'total'
 
-export const queryBuilder = ({ from, to }) => ({
+export const query = {
   aggs: {
     familySituation: {
       filters: {
@@ -49,23 +49,8 @@ export const queryBuilder = ({ from, to }) => ({
       }
     }
   },
-  size: 0,
-  query: {
-    bool: {
-      must: [
-        {
-          range: {
-            submitted_on: {
-              gte: 0,
-              lte: 1575119730735,
-              format: 'epoch_millis'
-            }
-          }
-        }
-      ]
-    }
-  }
-})
+  size: 0
+}
 
 export const resultBuilder = (response) => ({
   [propUnaccompanied]: {
