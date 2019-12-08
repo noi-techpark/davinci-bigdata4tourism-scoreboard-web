@@ -5,6 +5,7 @@ import MetricAccomodationCategory from '../components/scoreboard/accomodation-ca
 import MetricFamiliySituation from '../components/scoreboard/family-situation.vue'
 import MetricCountryOfOrigin from '../components/scoreboard/country-of-origin.vue'
 import MetricTargetAreas from '../components/scoreboard/target-areas.vue'
+import MetricLengthOfStay from '../components/scoreboard/length-of-stay.vue'
 
 Vue.component(
   'requests-bookings-cancellations',
@@ -15,3 +16,4 @@ Vue.component('accomodation-category', MetricAccomodationCategory)
 Vue.component('family-situation', MetricFamiliySituation)
 Vue.component('country-of-origin', MetricCountryOfOrigin)
 Vue.component('target-areas', MetricTargetAreas)
+Vue.component('length-of-stay', MetricLengthOfStay)

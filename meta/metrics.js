@@ -41,5 +41,12 @@ export default [
     description: 'Target areas.',
     component: 'target-areas',
     source: 'NONE'
+  },
+  {
+    id: 'metric6',
+    title: 'Length of stay',
+    description: 'Length of stay.',
+    component: 'length-of-stay',
+    source: 'NONE'
   }
 ]
