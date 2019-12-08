@@ -10,6 +10,9 @@ export const propDateHistogram = 'dateHistogram'
 
 const propByType = 'byType'
 
+const percentage = (total, value) =>
+  (total !== 0 ? (100.0 / total) * value : 0).toFixed(2)
+
 export const query = {
   aggs: {
     accomodations: {
@@ -131,11 +134,19 @@ export const resultBuilder = (response) => ({
       const label = dayjs(bucket.key).format('DD.MM.YYYY')
 
       result.labels.push(label)
-      result[propFarms].push(buckets[propFarms].doc_count)
-      result[propHotel1to3].push(buckets[propHotel1to3].doc_count)
-      result[propHotel4to5].push(buckets[propHotel4to5].doc_count)
-      result[propPrivate].push(buckets[propPrivate].doc_count)
-      result[propOthers].push(buckets[propOthers].doc_count)
+
+      const farmsCount = buckets[propFarms].doc_count
+      const hotel1to3Count = buckets[propHotel1to3].doc_count
+      const hotel4to5Count = buckets[propHotel4to5].doc_count
+      const privateCount = buckets[propPrivate].doc_count
+      const othersCount = buckets[propOthers].doc_count
+      const total = bucket.doc_count
+
+      result[propFarms].push(percentage(total, farmsCount))
+      result[propHotel1to3].push(percentage(total, hotel1to3Count))
+      result[propHotel4to5].push(percentage(total, hotel4to5Count))
+      result[propPrivate].push(percentage(total, privateCount))
+      result[propOthers].push(percentage(total, othersCount))
     })
     return result
   })()

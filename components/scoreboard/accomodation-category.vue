@@ -1,7 +1,7 @@
 <template>
   <StatsContainer>
     <GaugeList :gauges="gauges"></GaugeList>
-    <LineChart :chartData="chartData" :options="chartOptions"></LineChart>
+    <BarChart :chartData="chartData" :options="chartOptions"></BarChart>
   </StatsContainer>
 </template>
 
@@ -9,7 +9,7 @@
 import provideDataMixin from './mixins/scoreboard-data.mixin'
 import { rgbaPalette } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
-import LineChart from '@/components/charts/year.vue'
+import BarChart from '@/components/charts/bar.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/accomodation-category'
@@ -20,7 +20,7 @@ const percentage = (total, value) => (total !== 0 ? (100.0 / total) * value : 0)
 export default {
   components: {
     GaugeList,
-    LineChart,
+    BarChart,
     StatsContainer
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
@@ -31,6 +31,7 @@ export default {
       }
 
       const colors = rgbaPalette(5, 0.5)
+      const hoverColors = rgbaPalette(5, 0.8)
 
       const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
       return {
@@ -38,37 +39,52 @@ export default {
         datasets: [
           {
             label: 'Hotels 1-3 stars',
-            steppedLine: true,
+            // steppedLine: true,
             data: dateHistogram[esConfig.propHotel1to3],
+            // // data: [
+            // //   [1, 2, 3, 4, 5],
+            // //   [2.3, 1.1, 5.1, 2.7, 0.4]
+            // // ],
+            // data: [1, 2, 3, 4, 5],
+            backgroundColor: colors[0],
             borderColor: colors[0],
+            hoverBackgroundColor: hoverColors[0],
             fill: false
           },
           {
             label: 'Hotels 4-5 stars',
-            steppedLine: true,
+            // steppedLine: true,
             data: dateHistogram[esConfig.propHotel4to5],
+            backgroundColor: colors[1],
             borderColor: colors[1],
+            hoverBackgroundColor: hoverColors[1],
             fill: false
           },
           {
             label: 'Private accomodations',
-            steppedLine: true,
+            // steppedLine: true,
             data: dateHistogram[esConfig.propPrivate],
+            backgroundColor: colors[2],
             borderColor: colors[2],
+            hoverBackgroundColor: hoverColors[2],
             fill: false
           },
           {
             label: 'Farms',
-            steppedLine: true,
+            // steppedLine: true,
             data: dateHistogram[esConfig.propFarms],
+            backgroundColor: colors[3],
             borderColor: colors[3],
+            hoverBackgroundColor: hoverColors[3],
             fill: false
           },
           {
             label: 'Others',
-            steppedLine: true,
+            // steppedLine: true,
             data: dateHistogram[esConfig.propOthers],
+            backgroundColor: colors[4],
             borderColor: colors[4],
+            hoverBackgroundColor: hoverColors[4],
             fill: false
           }
         ]
@@ -78,10 +94,38 @@ export default {
       return {
         maintainAspectRatio: false,
         responsive: true,
-
+        scales: {
+          xAxes: [
+            {
+              stacked: true
+            }
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: 'Percentage'
+              },
+              stacked: true,
+              ticks: {
+                beginAtZero: true,
+                max: 100
+              }
+            }
+          ]
+        },
         title: {
           display: true,
           text: this.metric.title
+        },
+        tooltips: {
+          callbacks: {
+            label(tooltipItem, data) {
+              const index = tooltipItem.datasetIndex
+              const label = data.datasets[index].label
+              return `${label}: ${tooltipItem.value}%`
+            }
+          }
         }
       }
     },
