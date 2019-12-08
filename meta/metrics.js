@@ -1,7 +1,7 @@
 export default [
   {
     id: 'metric0',
-    title: 'Requests , Bookings, Cancellations',
+    title: 'Inquiry',
     description:
       'Composition of the guests according to family situation, relative to the total number of 309,680 guests',
     component: 'requests-bookings-cancellations',
@@ -16,28 +16,28 @@ export default [
   },
   {
     id: 'metric2',
-    title: 'Accommodation category',
+    title: 'Accommodation',
     description: 'Accommodation category.',
     component: 'accomodation-category',
     source: 'NONE'
   },
   {
     id: 'metric3',
-    title: 'Family situation',
+    title: 'Family',
     description: 'Family situation.',
     component: 'family-situation',
     source: 'NONE'
   },
   {
     id: 'metric4',
-    title: 'Countries of origin',
+    title: 'Origin',
     description: 'Countries of origin.',
     component: 'country-of-origin',
     source: 'NONE'
   },
   {
     id: 'metric5',
-    title: 'Target areas',
+    title: 'Target',
     description: 'Target areas.',
     component: 'target-areas',
     source: 'NONE'
