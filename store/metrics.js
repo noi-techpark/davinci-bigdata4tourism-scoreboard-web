@@ -181,6 +181,8 @@ export const actions = {
         index,
         message: err.message ? err.message : err
       })
+      // eslint-disable-next-line
+      console.error(err)
     }
   },
   setGlobalFilter({ commit }, { name, values }) {
