@@ -1,12 +1,14 @@
 <template>
   <StatsContainer>
     <GaugeList :gauges="gauges"></GaugeList>
+    <LineChart :chartData="chartData" :options="chartOptions"></LineChart>
   </StatsContainer>
 </template>
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
 import GaugeList from '@/components/charts/gauge-list.vue'
+import LineChart from '@/components/charts/year.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/requests-bookings-cancellations'
@@ -17,10 +19,56 @@ const percentage = (total, value) => (total !== 0 ? (100.0 / total) * value : 0)
 export default {
   components: {
     GaugeList,
+    LineChart,
     StatsContainer
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
   computed: {
+    chartData() {
+      if (this.metric.results == null) {
+        return null
+      }
+
+      const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
+
+      return {
+        labels: dateHistogram.labels,
+        datasets: [
+          {
+            label: 'Requests',
+            steppedLine: true,
+            data: dateHistogram.requests,
+            borderColor: 'rgba(255, 0, 0, 0.5)',
+            fill: false
+          },
+          {
+            label: 'Bookings',
+            steppedLine: true,
+            data: dateHistogram.bookings,
+            borderColor: 'rgb(0, 255, 0, 0.5)',
+            fill: false
+          },
+          {
+            label: 'Cancellations',
+            steppedLine: true,
+            data: dateHistogram.cancellations,
+            borderColor: 'rgb(0, 0, 255, 0.5)',
+            fill: false
+          }
+        ]
+      }
+    },
+    chartOptions() {
+      return {
+        maintainAspectRatio: false,
+        responsive: true,
+
+        title: {
+          display: true,
+          text: this.metric.title
+        }
+      }
+    },
     gauges() {
       if (this.metric.results == null) {
         return []
