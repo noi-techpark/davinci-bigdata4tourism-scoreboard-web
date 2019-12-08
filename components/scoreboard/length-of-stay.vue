@@ -14,8 +14,6 @@ import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/length-of-stay'
 import * as filters from '@/meta/filters'
-// const colors = require('nice-color-palettes')
-// const palette = require('google-palette')
 
 const NUMBER_OF_TOP_COUNT = 5
 
@@ -58,9 +56,10 @@ export default {
           {
             data: lengthOfStay.map((stay) => stay.count),
             fill: false,
-            backgroundColor: rgbaPalette(lengthOfStay.length, 0.2),
+            backgroundColor: rgbaPalette(lengthOfStay.length, 0.5),
             borderColor: rgbPalette(lengthOfStay.length),
-            borderWidth: 1
+            borderWidth: 1,
+            hoverBackgroundColor: rgbaPalette(lengthOfStay.length, 0.8)
           }
         ]
       }

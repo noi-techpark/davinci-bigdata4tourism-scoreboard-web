@@ -7,6 +7,7 @@
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
+import { rgbaPalette } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import LineChart from '@/components/charts/year.vue'
 import StatsContainer from '@/components/stats-container.vue'
@@ -29,8 +30,9 @@ export default {
         return null
       }
 
-      const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
+      const colors = rgbaPalette(3, 0.5)
 
+      const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
       return {
         labels: dateHistogram.labels,
         datasets: [
@@ -38,21 +40,21 @@ export default {
             label: 'Requests',
             steppedLine: true,
             data: dateHistogram.requests,
-            borderColor: 'rgba(255, 0, 0, 0.5)',
+            borderColor: colors[0],
             fill: false
           },
           {
             label: 'Bookings',
             steppedLine: true,
             data: dateHistogram.bookings,
-            borderColor: 'rgb(0, 255, 0, 0.5)',
+            borderColor: colors[1],
             fill: false
           },
           {
             label: 'Cancellations',
             steppedLine: true,
             data: dateHistogram.cancellations,
-            borderColor: 'rgb(0, 0, 255, 0.5)',
+            borderColor: colors[2],
             fill: false
           }
         ]
