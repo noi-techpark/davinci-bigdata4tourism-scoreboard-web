@@ -1,27 +1,28 @@
 <template>
-  <div>
+  <div class="bg-gray-300 border border-black p-2 mb-3">
     <button
       slot="button"
       v-if="!visible"
       @click="toggleVisibility"
-      class="text-black hover:text-gray-500"
+      class="flex text-black hover:text-gray-500"
     >
-      <ConfigIcon class="icon fill-current" />
-      <span class="sr-only">Open global filters</span>
+      <ConfigIcon class="icon fill-current self-center mr-2" />
+      <span class="self-center text-2xl">Open filters</span>
     </button>
 
     <button
       slot="button"
       v-if="visible"
       @click="toggleVisibility"
-      class="text-black hover:text-gray-500"
+      class="flex text-black hover:text-gray-500"
     >
-      <CloseIcon class="icon fill-current" />
-      <span class="sr-only">Close global filters</span>
+      <CloseIcon class="icon fill-current self-center mr-2" />
+      <span class="self-center text-2xl">Close filters</span>
     </button>
 
     <div v-if="visible">
-      <div v-for="filter in filters" :key="filter.name">
+      <div v-for="filter in filters" :key="filter.name" class="mt-2">
+        <div>{{ filter.name }}</div>
         <SelectableButton
           v-for="data in filter.values"
           :key="data.value"
