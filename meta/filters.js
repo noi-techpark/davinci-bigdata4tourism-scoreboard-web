@@ -44,6 +44,20 @@ export default [
           'NOT (adults:1 AND children:0) AND NOT (adults:>2 AND children:0) AND NOT (adults:2 AND children:0) AND NOT (adults:1 AND children:>0) AND NOT (adults:>1 AND children:>0)'
       }
     ]
+  },
+  {
+    name: 'countries',
+    values: [
+      { text: 'Italy', value: 'country.name:Italy' },
+      { text: 'Germany', value: 'country.name:Germany' },
+      { text: 'Austria', value: 'country.name:Austria' },
+      { text: 'Switzerland', value: 'country.name:Switzerland' },
+      {
+        text: 'Others',
+        value:
+          'NOT country.name:Italy AND NOT country.name:Germany AND NOT country.name:Austria AND NOT country.name:Switzerland'
+      }
+    ]
   }
 ]
 
@@ -63,11 +77,6 @@ export const applyQueryFilters = ({ query, globalFilters }) => {
   }
 
   const years = globalFilters.years != null ? globalFilters.years : []
-  const categories =
-    globalFilters.categories != null ? globalFilters.categories : []
-  const types = globalFilters.types != null ? globalFilters.types : []
-  const families = globalFilters.families != null ? globalFilters.families : []
-
   if (years.length) {
     const min = Math.min(...years)
     const max = Math.max(...years)
@@ -83,12 +92,15 @@ export const applyQueryFilters = ({ query, globalFilters }) => {
     })
   }
 
+  const categories =
+    globalFilters.categories != null ? globalFilters.categories : []
   if (categories.length) {
     resultQuery.query.bool.filter.push({
       terms: { 'category.name': categories }
     })
   }
 
+  const types = globalFilters.types != null ? globalFilters.types : []
   if (types.length) {
     resultQuery.query.bool.must.push({
       query_string: {
@@ -99,10 +111,23 @@ export const applyQueryFilters = ({ query, globalFilters }) => {
     })
   }
 
+  const families = globalFilters.families != null ? globalFilters.families : []
   if (families.length) {
     resultQuery.query.bool.must.push({
       query_string: {
         query: `(${families.join(') OR (')})`,
+        analyze_wildcard: true,
+        default_field: '*'
+      }
+    })
+  }
+
+  const countries =
+    globalFilters.countries != null ? globalFilters.countries : []
+  if (countries.length) {
+    resultQuery.query.bool.must.push({
+      query_string: {
+        query: `(${countries.join(') OR (')})`,
         analyze_wildcard: true,
         default_field: '*'
       }
