@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import territories from '@/meta/territories'
 import nace from '@/meta/nace'
+import filters from '@/meta/filters'
 import metrics from '@/meta/metrics'
 
 export const state = () => ({
@@ -14,11 +15,10 @@ export const state = () => ({
   metrics,
   openMetric: 0,
   globalFilters: {
-    families: [],
-    categories: [],
-    types: [],
-    visible: false,
-    years: []
+    ...filters.reduce((prev, curr) => {
+      return { ...prev, [curr.name]: [] }
+    }, {}),
+    visible: false
   }
 })
 
