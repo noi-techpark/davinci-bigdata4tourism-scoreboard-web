@@ -10,8 +10,13 @@
       </div>
     </div>
 
-    <GlobalFilter :filters="filters"></GlobalFilter>
+    <!-- <GlobalFilter :filters="filters"></GlobalFilter> -->
 
+    <GlobalFilterModal :filters="filters"></GlobalFilterModal>
+
+    <div class="text-xl text-semibold">
+      METRICS
+    </div>
     <Tabs
       :selectedIndex="selectedIndex"
       :tabs="tabs"
@@ -26,12 +31,14 @@
 <script>
 import { mapMutations } from 'vuex'
 import filters from '@/meta/filters'
-import GlobalFilter from '@/components/global-filter.vue'
+// import GlobalFilter from '@/components/global-filter.vue'
+import GlobalFilterModal from '@/components/global-filter-modal.vue'
 import Tabs from '@/components/tabs/tabs.vue'
 
 export default {
   components: {
-    GlobalFilter,
+    // GlobalFilter,
+    GlobalFilterModal,
     Tabs
   },
   computed: {

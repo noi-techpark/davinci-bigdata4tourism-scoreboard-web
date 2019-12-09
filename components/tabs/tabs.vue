@@ -1,10 +1,14 @@
 <template>
   <div>
-    <ul class="list-reset hidden flex lg:flex border-b">
+    <ul class="list-reset hidden flex lg:flex">
       <li
         v-for="(tab, index) in tabs"
         :key="tab.name"
-        :class="['-mb-px mr-1 ', { 'is-active': index === selectedIndex }]"
+        :class="[
+          '-mb-px',
+          { 'mr-1': index !== tabs.length - 1 },
+          { 'is-active': index === selectedIndex }
+        ]"
       >
         <a
           :href="tab.href"

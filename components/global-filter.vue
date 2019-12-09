@@ -1,23 +1,24 @@
 <template>
-  <div class="bg-gray-300 border border-black p-2 mb-3">
+  <div class="sticky top-0 z-10 bg-gray-300 border border-black p-2 mb-3">
     <button
       slot="button"
       v-if="!visible"
       @click="toggleVisibility"
-      class="flex text-black hover:text-gray-500"
+      class="flex w-full text-black hover:text-gray-500"
     >
       <ConfigIcon class="icon fill-current self-center mr-2" />
-      <span class="self-center text-2xl">Open filters</span>
+      <span class="self-center lg:text-xl">OPEN FILTERS</span>
     </button>
 
     <button
       slot="button"
       v-if="visible"
       @click="toggleVisibility"
-      class="flex text-black hover:text-gray-500"
+      class="
+        flex w-full text-black hover:text-gray-500"
     >
       <CloseIcon class="icon fill-current self-center mr-2" />
-      <span class="self-center text-2xl">Close filters</span>
+      <span class="self-center lg:text-xl">CLOSE FILTERS</span>
     </button>
 
     <div v-if="visible">

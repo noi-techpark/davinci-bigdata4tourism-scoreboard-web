@@ -1,6 +1,6 @@
 <template>
-  <div :class="'min-h-100'">
-    <div>{{ metric.description }}</div>
+  <div :class="['min-h-160', borderClass]">
+    <div class="mb-3">{{ metric.description }}</div>
     <div :class="'relative'">
       <Spinner
         v-if="metric.loading"
@@ -26,6 +26,10 @@ export default {
     Spinner
   },
   computed: {
+    borderClass() {
+      const index = this.$store.state.metrics.openMetric
+      return `mt-3 p-2 lg:p-3 border-l-8 border-metric${index}-500`
+    },
     metric() {
       return this.$store.getters['metrics/currentMetric']
     },
@@ -44,5 +48,8 @@ export default {
 <style scoped>
 .min-h-100 {
   min-height: 100px;
+}
+.min-h-160 {
+  min-height: 160px;
 }
 </style>

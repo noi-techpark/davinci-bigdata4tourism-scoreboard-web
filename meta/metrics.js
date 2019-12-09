@@ -10,7 +10,8 @@ export default [
   {
     id: 'metric1',
     title: 'Time until arrival',
-    description: 'Time until arrival.',
+    description:
+      'Time until arrival (the computation takes a while - maybe take a coffee break)',
     component: 'time-until-arrival',
     source: 'NONE'
   },
