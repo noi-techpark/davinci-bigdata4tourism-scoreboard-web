@@ -26,7 +26,7 @@
     <div class="relative lg:hidden">
       <select
         @change="tabChanges(parseInt($event.target.value), 0)"
-        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        class="block appearance-none w-full bg-white border-2 border-black text-black text-xl uppercase p-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
       >
         <option
           v-for="(tab, index) in tabs"

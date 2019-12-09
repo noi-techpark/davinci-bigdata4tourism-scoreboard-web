@@ -28,7 +28,7 @@ export default {
   computed: {
     borderClass() {
       const index = this.$store.state.metrics.openMetric
-      return `mt-3 p-2 lg:p-3 border-l-8 border-metric${index}-500`
+      return `mt-4 p-2 lg:p-3 border-l-8 border-metric${index}-500`
     },
     metric() {
       return this.$store.getters['metrics/currentMetric']

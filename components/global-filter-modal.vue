@@ -2,7 +2,6 @@
   <div
     v-if="!visible"
     class="sticky top-0 z-2000 bg-white border-2 border-black mb-3"
-    style="z-index: 1001"
   >
     <Modal>
       <button
@@ -11,7 +10,6 @@
         @click="openModal"
         class="flex w-full p-2 text-black hover:text-gray-500"
       >
-        <ConfigIcon class="icon fill-current self-center mr-2" />
         <span class="self-center text-xl">CONFIGURE FILTERS</span>
       </button>
 
@@ -65,14 +63,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ConfigIcon from '@/components/icons/config.vue'
 import ExitIcon from '@/components/icons/exit.vue'
 import Modal from '@/components/modal.vue'
 import SelectableButton from '@/components/selectable-button.vue'
 
 export default {
   components: {
-    ConfigIcon,
     ExitIcon,
     Modal,
     SelectableButton

@@ -10,14 +10,19 @@
       </div>
     </div>
 
-    <!-- <GlobalFilter :filters="filters"></GlobalFilter> -->
+    <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
+      Filters
+    </div>
+    <GlobalFilterModal
+      :filters="filters"
+      :class="marginClasses"
+    ></GlobalFilterModal>
 
-    <GlobalFilterModal :filters="filters"></GlobalFilterModal>
-
-    <div class="text-xl text-semibold">
-      METRICS
+    <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
+      Metrics
     </div>
     <Tabs
+      :class="marginClasses"
       :selectedIndex="selectedIndex"
       :tabs="tabs"
       @tab-changes="openMetric($event)"
@@ -31,13 +36,11 @@
 <script>
 import { mapMutations } from 'vuex'
 import filters from '@/meta/filters'
-// import GlobalFilter from '@/components/global-filter.vue'
 import GlobalFilterModal from '@/components/global-filter-modal.vue'
 import Tabs from '@/components/tabs/tabs.vue'
 
 export default {
   components: {
-    // GlobalFilter,
     GlobalFilterModal,
     Tabs
   },
@@ -53,6 +56,9 @@ export default {
     },
     loaded() {
       return this.$store.state.metrics.loaded
+    },
+    marginClasses() {
+      return 'ml-2 mr-2 xl:ml-0 xl:mr-0'
     },
     tabs() {
       return this.$store.state.metrics.metrics.map((metric) => ({
