@@ -5,6 +5,13 @@
       :chartData="chartData"
       :options="chartOptions"
     ></HorizontalBarChart>
+
+    <Map
+      :center="map.center"
+      :zoom="map.zoom"
+      :markers="map.markers"
+      class="mt-5"
+    />
   </StatsContainer>
 </template>
 
@@ -13,6 +20,7 @@ import provideDataMixin from './mixins/scoreboard-data.mixin'
 import { rgbPalette, rgbaPalette } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import HorizontalBarChart from '@/components/charts/group.vue'
+import Map from '@/components/map.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/target-areas'
@@ -40,6 +48,7 @@ export default {
   components: {
     GaugeList,
     HorizontalBarChart,
+    Map,
     StatsContainer
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
@@ -98,6 +107,21 @@ export default {
         },
         ...buildTopAreas(result)
       ]
+    },
+    map() {
+      return {
+        center: {
+          lat: 46.5,
+          lng: 11.35
+        },
+        zoom: 9,
+        markers: [
+          { lat: 46.51, lng: 11.37 },
+          { lat: 46.52, lng: 11.35 },
+          { lat: 46.59, lng: 11.41 },
+          { lat: 46.57, lng: 11.31 }
+        ]
+      }
     }
   }
 }
