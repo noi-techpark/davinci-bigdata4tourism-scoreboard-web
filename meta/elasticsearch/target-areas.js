@@ -22,14 +22,25 @@ export const query = {
   size: 0
 }
 
-export const resultBuilder = (response) => ({
-  [propAreaCount]: {
-    value: response.aggregations[propAreaCount].value
-  },
-  [propTopAreas]: {
-    value: response.aggregations[propTopAreas].buckets
-  },
-  [propTotal]: {
-    value: response.hits.total
+export const resultBuilder = (response) => {
+  const topAreas = buildTopAreas(response)
+  const total = topAreas.reduce((prev, curr) => prev + curr.value, 0)
+
+  return {
+    [propAreaCount]: response.aggregations[propAreaCount].value,
+    [propTopAreas]: topAreas,
+    [propTotal]: total
   }
-})
+}
+
+const buildTopAreas = (response) => {
+  const result = response.aggregations[propTopAreas].buckets.map((c) => ({
+    name: c.key,
+    value: c.doc_count
+  }))
+  result.push({
+    name: 'Others',
+    value: response.aggregations[propTopAreas].sum_other_doc_count
+  })
+  return result
+}
