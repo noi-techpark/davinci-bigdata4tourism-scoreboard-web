@@ -4,6 +4,9 @@
 ** Docs: https://tailwindcss.com/docs/configuration
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
+
+const colorUtil = require('./tailwind.color-util')
+
 module.exports = {
   theme: {
     colors: {
@@ -46,7 +49,8 @@ module.exports = {
       filterActive: {
         '500': 'hsl(43, 100%, 38%)',
         // '500': 'hsl(0, 0%, 50%)',
-      }
+      },
+      chart: colorUtil.colors
     },
     spacing: {
       '0': '0',

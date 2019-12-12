@@ -1,3 +1,5 @@
+const colorUtil = require('./tailwind.color-util')
+
 export default {
   mode: 'spa',
   env: {
@@ -87,6 +89,7 @@ export default {
       'hover:border-metric5-500',
       'hover:border-metric6-500',
       'hover:border-filterActive-500',
+      ...[colorUtil.postCSS]
     ],
   },
   build: {
