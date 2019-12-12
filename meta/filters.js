@@ -71,7 +71,7 @@ export const applyQueryFilters = ({ query, globalFilters }) => {
     query: {
       bool: {
         must: [],
-        filter: []
+        filter: [{ term: { invalid: false } }]
       }
     }
   }
