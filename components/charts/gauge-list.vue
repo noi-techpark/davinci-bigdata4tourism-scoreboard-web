@@ -6,7 +6,8 @@
       :class="[
         'flex-1 text-center font-light text-2xl lg:text-4xl border-2 border-black mb-2 lg:ml-0 lg:mr-0',
         { 'lg:ml-1': index !== 0 },
-        { 'lg:mr-1': index !== gauges.length - 1 }
+        { 'lg:mr-1': index !== gauges.length - 1 },
+        { [gauge.classes]: gauge.classes != null }
       ]"
       :value="gauge.value"
       :title="gauge.title"
