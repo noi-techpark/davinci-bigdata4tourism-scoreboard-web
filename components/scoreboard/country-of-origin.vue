@@ -10,7 +10,11 @@
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
-import { rgbPalette, rgbaPalette } from '@/components/charts/color-util'
+import {
+  borderRgba64,
+  chartRgba64,
+  hoverRgba64
+} from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import HorizontalBarChart from '@/components/charts/group.vue'
 import StatsContainer from '@/components/stats-container.vue'
@@ -57,10 +61,10 @@ export default {
           {
             data: topCountries.map((c) => c.value),
             fill: false,
-            backgroundColor: rgbaPalette(topCountries.length, 0.5),
-            borderColor: rgbPalette(topCountries.length),
+            backgroundColor: chartRgba64,
+            borderColor: borderRgba64,
             borderWidth: 1,
-            hoverBackgroundColor: rgbaPalette(topCountries.length, 0.8)
+            hoverBackgroundColor: hoverRgba64
           }
         ]
       }

@@ -7,7 +7,11 @@
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
-import { rgbaPalette } from '@/components/charts/color-util'
+import {
+  borderRgba64,
+  chartRgba64,
+  hoverRgba64
+} from '@/components/charts/color-util'
 import BarChart from '@/components/charts/bar.vue'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import StatsContainer from '@/components/stats-container.vue'
@@ -30,9 +34,6 @@ export default {
         return null
       }
 
-      const colors = rgbaPalette(5, 0.5)
-      const hoverColors = rgbaPalette(5, 0.8)
-
       const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
       return {
         labels: dateHistogram.labels,
@@ -40,41 +41,41 @@ export default {
           {
             label: 'Hotels 1-3 stars',
             data: dateHistogram[esConfig.propHotel1to3],
-            backgroundColor: colors[0],
-            borderColor: colors[0],
-            hoverBackgroundColor: hoverColors[0],
+            backgroundColor: chartRgba64[0],
+            borderColor: borderRgba64[0],
+            hoverBackgroundColor: hoverRgba64[0],
             fill: false
           },
           {
             label: 'Hotels 4-5 stars',
             data: dateHistogram[esConfig.propHotel4to5],
-            backgroundColor: colors[1],
-            borderColor: colors[1],
-            hoverBackgroundColor: hoverColors[1],
+            backgroundColor: chartRgba64[1],
+            borderColor: borderRgba64[1],
+            hoverBackgroundColor: hoverRgba64[1],
             fill: false
           },
           {
             label: 'Private accomodations',
             data: dateHistogram[esConfig.propPrivate],
-            backgroundColor: colors[2],
-            borderColor: colors[2],
-            hoverBackgroundColor: hoverColors[2],
+            backgroundColor: chartRgba64[2],
+            borderColor: borderRgba64[2],
+            hoverBackgroundColor: hoverRgba64[2],
             fill: false
           },
           {
             label: 'Farms',
             data: dateHistogram[esConfig.propFarms],
-            backgroundColor: colors[3],
-            borderColor: colors[3],
-            hoverBackgroundColor: hoverColors[3],
+            backgroundColor: chartRgba64[3],
+            borderColor: borderRgba64[3],
+            hoverBackgroundColor: hoverRgba64[3],
             fill: false
           },
           {
             label: 'Others',
             data: dateHistogram[esConfig.propOthers],
-            backgroundColor: colors[4],
-            borderColor: colors[4],
-            hoverBackgroundColor: hoverColors[4],
+            backgroundColor: chartRgba64[4],
+            borderColor: borderRgba64[4],
+            hoverBackgroundColor: hoverRgba64[4],
             fill: false
           }
         ]

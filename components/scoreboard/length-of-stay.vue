@@ -7,7 +7,11 @@
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
-import { rgbPalette, rgbaPalette } from '@/components/charts/color-util'
+import {
+  borderRgba64,
+  chartRgba64,
+  hoverRgba64
+} from '@/components/charts/color-util'
 import BarChart from '@/components/charts/bar.vue'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import StatsContainer from '@/components/stats-container.vue'
@@ -56,10 +60,10 @@ export default {
           {
             data: lengthOfStay.map((stay) => stay.count),
             fill: false,
-            backgroundColor: rgbaPalette(lengthOfStay.length, 0.5),
-            borderColor: rgbPalette(lengthOfStay.length),
+            backgroundColor: chartRgba64,
+            borderColor: borderRgba64,
             borderWidth: 1,
-            hoverBackgroundColor: rgbaPalette(lengthOfStay.length, 0.8)
+            hoverBackgroundColor: hoverRgba64
           }
         ]
       }
