@@ -60,9 +60,11 @@ export default {
     },
     chartOptions() {
       return {
+        legend: {
+          display: false
+        },
         maintainAspectRatio: false,
         responsive: true,
-
         title: {
           display: true,
           text: this.metric.title
@@ -82,18 +84,21 @@ export default {
           value: total
         },
         {
+          classes: `bg-chart-0 border-chart-0 text-white`,
           decimalPlaces: 2,
           title: 'Requests',
           value: percentage(total, result[esConfig.propRequests].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-1 border-chart-1 text-white`,
           decimalPlaces: 2,
           title: 'Bookings',
           value: percentage(total, result[esConfig.propBookings].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-2 border-chart-2 text-white`,
           decimalPlaces: 2,
           title: 'Cancellations',
           value: percentage(total, result[esConfig.propCancellations].value),

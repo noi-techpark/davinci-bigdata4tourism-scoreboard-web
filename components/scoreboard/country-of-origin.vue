@@ -32,12 +32,15 @@ const buildTopCountries = (result) => {
     result[esConfig.propTopCountries].length
   )
 
-  return result[esConfig.propTopCountries].slice(0, topCount).map((c) => ({
-    decimalPlaces: 2,
-    title: c.name,
-    value: percentage(result[esConfig.propTotal], c.value),
-    unit: '%'
-  }))
+  return result[esConfig.propTopCountries]
+    .slice(0, topCount)
+    .map((c, index) => ({
+      classes: `bg-chart-${index} border-chart-${index} text-white`,
+      decimalPlaces: 2,
+      title: c.name,
+      value: percentage(result[esConfig.propTotal], c.value),
+      unit: '%'
+    }))
 }
 
 export default {

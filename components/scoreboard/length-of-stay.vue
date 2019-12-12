@@ -31,12 +31,15 @@ const buildTopStays = (result) => {
     result[esConfig.propLengthOfStay].length
   )
 
-  return result[esConfig.propLengthOfStay].slice(0, topCount).map((stay) => ({
-    decimalPlaces: 2,
-    title: dayText(stay.days),
-    value: percentage(result.total.value, stay.count),
-    unit: '%'
-  }))
+  return result[esConfig.propLengthOfStay]
+    .slice(0, topCount)
+    .map((stay, index) => ({
+      classes: `bg-chart-${index} border-chart-${index} text-white`,
+      decimalPlaces: 2,
+      title: dayText(stay.days),
+      value: percentage(result.total.value, stay.count),
+      unit: '%'
+    }))
 }
 
 export default {

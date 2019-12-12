@@ -40,7 +40,8 @@ const buildTopAreas = (result) => {
     result[esConfig.propTopAreas].length
   )
 
-  return result[esConfig.propTopAreas].slice(0, topCount).map((c) => ({
+  return result[esConfig.propTopAreas].slice(0, topCount).map((c, index) => ({
+    classes: `bg-chart-${index} border-chart-${index} text-white`,
     decimalPlaces: 2,
     title: c.name,
     value: percentage(result[esConfig.propTotal], c.value),

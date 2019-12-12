@@ -83,6 +83,9 @@ export default {
     },
     chartOptions() {
       return {
+        legend: {
+          display: false
+        },
         maintainAspectRatio: false,
         responsive: true,
         scales: {
@@ -119,12 +122,14 @@ export default {
           value: result[esConfig.propTotal].value
         },
         {
+          classes: `bg-chart-0 border-chart-0 text-white`,
           decimalPlaces: 2,
           title: 'Unaccompanied',
           value: percentage(total, result[esConfig.propUnaccompanied].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-1 border-chart-1 text-white`,
           decimalPlaces: 2,
           title: 'Groups without children',
           value: percentage(
@@ -134,6 +139,7 @@ export default {
           unit: '%'
         },
         {
+          classes: `bg-chart-2 border-chart-2 text-white`,
           decimalPlaces: 2,
           title: 'Couples without children',
           value: percentage(
@@ -143,6 +149,7 @@ export default {
           unit: '%'
         },
         {
+          classes: `bg-chart-3 border-chart-3 text-white`,
           decimalPlaces: 2,
           title: 'Singles with children',
           value: percentage(
@@ -152,6 +159,7 @@ export default {
           unit: '%'
         },
         {
+          classes: `bg-chart-4 border-chart-4 text-white`,
           decimalPlaces: 2,
           title: 'Families',
           value: percentage(total, result[esConfig.propFamilies].value),

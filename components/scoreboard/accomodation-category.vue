@@ -83,6 +83,9 @@ export default {
     },
     chartOptions() {
       return {
+        legend: {
+          display: false
+        },
         maintainAspectRatio: false,
         responsive: true,
         scales: {
@@ -133,30 +136,35 @@ export default {
           value: total
         },
         {
+          classes: `bg-chart-0 border-chart-0 text-white`,
           decimalPlaces: 2,
           title: 'Hotel 1-3 stars',
           value: percentage(total, result[esConfig.propHotel1to3].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-1 border-chart-1 text-white`,
           decimalPlaces: 2,
           title: 'Hotel 4-5 stars',
           value: percentage(total, result[esConfig.propHotel4to5].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-2 border-chart-2 text-white`,
           decimalPlaces: 2,
           title: 'Private accomodations',
           value: percentage(total, result[esConfig.propPrivate].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-3 border-chart-3 text-white`,
           decimalPlaces: 2,
           title: 'Farms',
           value: percentage(total, result[esConfig.propFarms].value),
           unit: '%'
         },
         {
+          classes: `bg-chart-4 border-chart-4 text-white`,
           decimalPlaces: 2,
           title: 'Others',
           value: percentage(total, result[esConfig.propOthers].value),
