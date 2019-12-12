@@ -89,7 +89,7 @@ export default {
       'hover:border-metric5-500',
       'hover:border-metric6-500',
       'hover:border-filterActive-500',
-      ...[colorUtil.postCSS]
+      ...colorUtil.postCss
     ],
   },
   build: {

@@ -48,7 +48,6 @@ module.exports = {
       },
       filterActive: {
         '500': 'hsl(43, 100%, 38%)',
-        // '500': 'hsl(0, 0%, 50%)',
       },
       chart: colorUtil.colors
     },

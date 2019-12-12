@@ -28,6 +28,6 @@ const buildPostCss = (count) => {
 }
 
 module.exports = {
-    colors: buildColors(paletteCount, 0.5),
+    colors: buildColors(paletteCount, 0.5).reduce((prev, curr, index) => ({...prev, [index]: curr}), {}),
     postCss: buildPostCss(paletteCount)
 }
