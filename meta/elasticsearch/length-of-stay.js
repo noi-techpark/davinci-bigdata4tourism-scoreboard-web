@@ -7,7 +7,7 @@ export const query = {
       terms: {
         field: 'length_of_stay',
         size: 20,
-        order: { _count: 'desc' }
+        order: { _key: 'asc' }
       }
     }
   },
