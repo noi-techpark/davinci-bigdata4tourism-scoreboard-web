@@ -1,0 +1,23 @@
+.metric-map {
+  display: flex;
+  justify-content: center;
+}
+
+.metric-map .map-container {
+  height: 80vh;
+  width: 90vw;
+}
+
+.metric-map .leaflet-top.leaflet-right .info {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.metric-map .leaflet-top.leaflet-right .info span {
+  text-align: center;
+}
+
+.metric-map .leaflet-top.leaflet-right .info br {
+  display: none;
+}

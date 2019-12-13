@@ -33,6 +33,7 @@ export default {
     '~/plugins/filters',
     '~/plugins/portal',
     '~/plugins/register-metrics',
+    '~/plugins/vue2-leaflet-chloropleth.js',
     '~/plugins/vue2-leaflet-markercluster.js',
   ],
   buildModules: [
@@ -48,6 +49,7 @@ export default {
     baseURL: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
   },
   purgeCSS: {
+    whitelistPatterns: [/leaflet/],
     whitelist: [
       'text-metric0-500',
       'text-metric1-500',

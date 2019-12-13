@@ -6,12 +6,43 @@
       :options="chartOptions"
     ></HorizontalBarChart>
 
-    <Map
-      :center="map.center"
-      :zoom="map.zoom"
-      :markers="map.markers"
-      class="mt-5"
-    />
+    <div v-if="geojson == null">
+      Loading Map...
+    </div>
+    <div v-if="geojson != null" class="metric-map mt-5">
+      <Map>
+        <template v-slot:layers>
+          <l-choropleth-layer
+            :data="choroplethData"
+            :geojson="geojson"
+            :colorScale="colorScale"
+            :value="{
+              key: 'value',
+              metric: 'visitors'
+            }"
+            geojson-id-key="ISTAT_CODE"
+            title-key="name"
+            id-key="istat"
+          >
+            <template slot-scope="props">
+              <l-info-control
+                :item="props.currentItem"
+                :unit="props.unit"
+                title="Target area"
+                placeholder="Hover over an area"
+              />
+              <l-reference-chart
+                :colorScale="colorScale"
+                :min="props.min"
+                :max="props.max"
+                title="Visitors"
+                position="topright"
+              />
+            </template>
+          </l-choropleth-layer>
+        </template>
+      </Map>
+    </div>
   </StatsContainer>
 </template>
 
@@ -24,7 +55,7 @@ import {
 } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import HorizontalBarChart from '@/components/charts/group.vue'
-import Map from '@/components/map.vue'
+import Map from '@/components/map/map.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/target-areas'
@@ -55,6 +86,11 @@ export default {
     HorizontalBarChart,
     Map,
     StatsContainer
+  },
+  data() {
+    return {
+      geojson: null
+    }
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
   computed: {
@@ -113,21 +149,17 @@ export default {
         ...buildTopAreas(result)
       ]
     },
-    map() {
-      return {
-        center: {
-          lat: 46.5,
-          lng: 11.35
-        },
-        zoom: 9,
-        markers: [
-          { lat: 46.51, lng: 11.37 },
-          { lat: 46.52, lng: 11.35 },
-          { lat: 46.59, lng: 11.41 },
-          { lat: 46.57, lng: 11.31 }
-        ]
-      }
+    choroplethData() {
+      return this.$store.state.metrics.metrics[5].results[0].areas
+    },
+    colorScale() {
+      return ['e7d090', 'e9ae7b', 'de7062']
     }
+  },
+  mounted() {
+    import('@/assets/geojson/south-tyrol.geo.json').then(
+      (data) => (this.geojson = data.default)
+    )
   }
 }
 </script>

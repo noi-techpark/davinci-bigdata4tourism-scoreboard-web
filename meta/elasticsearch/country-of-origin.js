@@ -1,4 +1,6 @@
 export const propCountryCount = 'countryCount'
+export const propCountryCodes = 'codes'
+export const propCountries = 'countries'
 export const propTopCountries = 'topCountries'
 export const propTotal = 'total'
 
@@ -9,12 +11,19 @@ export const query = {
         field: 'country.name'
       }
     },
-    [propTopCountries]: {
+    [propCountries]: {
       terms: {
         field: 'country.name',
-        size: 15,
+        size: 300,
         order: {
           _count: 'desc'
+        }
+      },
+      aggs: {
+        [propCountryCodes]: {
+          terms: {
+            field: 'country.code'
+          }
         }
       }
     }
@@ -23,24 +32,26 @@ export const query = {
 }
 
 export const resultBuilder = (response) => {
-  const topCountries = buildTopCountries(response)
-  const total = topCountries.reduce((prev, curr) => prev + curr.value, 0)
+  const countries = buildCountries(response)
+  const topCountries = countries.slice(0, 15)
+  const topTotal = topCountries.reduce((prev, curr) => prev + curr.value, 0)
+  const others = topCountries.reduce((prev, curr) => prev + curr.value, 0)
+  topCountries.push({
+    name: 'Others',
+    value: others
+  })
 
   return {
     [propCountryCount]: response.aggregations[propCountryCount].value,
+    [propCountries]: countries,
     [propTopCountries]: topCountries,
-    [propTotal]: total
+    [propTotal]: topTotal
   }
 }
 
-const buildTopCountries = (response) => {
-  const result = response.aggregations[propTopCountries].buckets.map((c) => ({
+const buildCountries = (response) =>
+  response.aggregations[propCountries].buckets.map((c) => ({
+    code: c[propCountryCodes].buckets[0].key.toUpperCase(),
     name: c.key,
     value: c.doc_count
   }))
-  result.push({
-    name: 'Others',
-    value: response.aggregations[propTopCountries].sum_other_doc_count
-  })
-  return result
-}
