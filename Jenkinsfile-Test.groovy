@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Upload') {
             steps {
-                s3Upload(bucket: 'test-tourism-web', acl: 'PublicRead', file: './dist')
+                s3Upload(bucket: 'test-bigdata4tourism-web', acl: 'PublicRead', file: './dist')
             }
         }
     }
