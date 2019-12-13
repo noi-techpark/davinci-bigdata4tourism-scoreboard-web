@@ -30,13 +30,13 @@ If you don't want to install all prerequisites directly on your machine and inst
 Get a copy of the repository:
 
 ```bash
-git clone https://github.com/gappc/tourism-scoreboard-web.git
+git clone git@github.com:noi-techpark/davinci-innovation-scoreboard-web.git
 ```
 
 Change directory:
 
 ```bash
-cd gappc/tourism-scoreboard-web
+cd davinci-innovation-scoreboard-web
 ```
 
 ### Dependencies
@@ -117,7 +117,7 @@ docker-compose exec java /bin/sh -c "npm run test"
 
 ### Support
 
-ToDo: For support, please contact [info@opendatahub.bz.it](mailto:info@opendatahub.bz.it).
+For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
 
 ### Contributing
 
