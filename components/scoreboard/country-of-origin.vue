@@ -9,7 +9,7 @@
     <div v-if="geojson == null">
       Loading Map...
     </div>
-    <div class="metric-map mt-5">
+    <div v-if="geojson != null" class="metric-map mt-5">
       <Map :zoom="4">
         <template v-slot:layers>
           <l-choropleth-layer
@@ -88,6 +88,11 @@ export default {
     HorizontalBarChart,
     Map,
     StatsContainer
+  },
+  data() {
+    return {
+      geojson: null
+    }
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
   computed: {
