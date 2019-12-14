@@ -7,7 +7,7 @@
     ></HorizontalBarChart>
 
     <div v-if="geojson == null">
-      Loading Map...
+      Loading map data...
     </div>
     <div v-if="geojson != null" class="metric-map mt-5">
       <Map>
