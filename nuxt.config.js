@@ -1,3 +1,5 @@
+import webpack from 'webpack'
+
 const colorUtil = require('./tailwind.color-util')
 
 export default {
@@ -30,7 +32,6 @@ export default {
   plugins: [
     '~/plugins/axios',
     '~/plugins/es-client',
-    '~/plugins/filters',
     '~/plugins/portal',
     '~/plugins/register-metrics',
     '~/plugins/vue2-leaflet-chloropleth.js',
@@ -95,6 +96,9 @@ export default {
     ],
   },
   build: {
+    plugins: [
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ],
     extend(config, ctx) {
         if (ctx.isDev && ctx.isClient) {
           config.module.rules.push({

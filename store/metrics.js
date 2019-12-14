@@ -1,23 +1,11 @@
-import Vue from 'vue'
-import territories from '@/meta/territories'
-import nace from '@/meta/nace'
 import filters from '@/meta/filters'
 import metrics from '@/meta/metrics'
 
 export const state = () => ({
-  loaded: false,
-  repaint: {
-    territories: false
-  },
-  territories,
-  selectedTerritories: [],
-  nace,
   metrics,
   openMetric: 0,
   globalFilters: {
-    ...filters.reduce((prev, curr) => {
-      return { ...prev, [curr.name]: [] }
-    }, {}),
+    ...filters.reduce((prev, curr) => ({ ...prev, [curr.name]: [] }), {}),
     visible: false
   }
 })
@@ -32,46 +20,15 @@ export const getters = {
     return state.metrics[openMetric].component
   },
   filterAsMap: (state) => (name) => {
-    const filter = state.globalFilters[name]
-    return filter.reduce((prev, curr) => {
-      prev[curr] = curr
-      return prev
-    }, {})
+    const filters = state.globalFilters[name]
+    return filters.reduce((prev, curr) => ({ ...prev, [curr]: curr }), {})
   },
   isMetricOpen: (state) => (index) => {
     return state.openMetric === index
-  },
-  hasDataByNace: (state) => (index) => {
-    return state.metrics[index].dataByNace !== null
-  },
-  getDataByTerritory: (state) => (index) => {
-    return state.metrics[index].dataByTerritory
-  },
-  getDataByNace: (state) => (index) => {
-    return state.metrics[index].dataByNace
-  },
-  getYears: (state) => (index) => {
-    const data = state.metrics[index].dataByTerritory
-
-    if (data === undefined) return []
-
-    return data[Object.keys(data)[0]]
-      .sort((yearA, yearB) => {
-        return parseInt(yearA.year) - parseInt(yearB.year)
-      })
-      .map((year) => {
-        return year.year
-      })
-  },
-  getTerritoryLabel: (state) => (territory) => {
-    return state.territories[territory]
   }
 }
 
 export const mutations = {
-  globalFiltersVisible(state, { visible }) {
-    state.globalFilters = { ...state.globalFilters, visible }
-  },
   loadMetric(state, { index }) {
     const metrics = [...state.metrics]
     metrics[index].loading = true
@@ -101,29 +58,14 @@ export const mutations = {
       metric.loading = false
       metric.loaded = false
       metric.loadError = null
-      // metric.results = []
     })
     state.metrics = metrics
-  },
-  startRepaint(state, part) {
-    state.repaint[part] = true
-  },
-  finishRepaint(state, part) {
-    state.repaint[part] = false
   },
   openMetric(state, index) {
     state.openMetric = index
   },
   closeMetric(state) {
     state.openMetric = null
-  },
-  setGlobalFilter(state, { name, values }) {
-    const globalFilters = { ...state.globalFilters }
-    globalFilters[name] = values
-    state.globalFilters = globalFilters
-  },
-  selectTerritories(state, selectedTerritories) {
-    state.selectedTerritories = selectedTerritories
   },
   toggleGlobalFilter(state, { name, value }) {
     const filter = [...state.globalFilters[name]]
@@ -185,23 +127,8 @@ export const actions = {
       console.error(err)
     }
   },
-  setGlobalFilter({ commit }, { name, values }) {
-    commit('setGlobalFilter', { name, values })
-  },
   toggleGlobalFilter({ commit }, { name, value }) {
     commit('resetMetrics')
     commit('toggleGlobalFilter', { name, value })
-  },
-  toggleGlobalFiltersVisibility({ commit, state }) {
-    const visible = !state.globalFilters.visible
-    commit('globalFiltersVisible', { visible })
-  },
-  selectTerritories({ commit }, selectedTerritories) {
-    commit('selectTerritories', selectedTerritories)
-    commit('startRepaint', 'territories')
-
-    Vue.nextTick(() => {
-      commit('finishRepaint', 'territories')
-    })
   }
 }

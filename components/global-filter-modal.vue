@@ -99,9 +99,6 @@ export default {
       return () => {
         this.$store.dispatch('metrics/toggleGlobalFilter', { name, value })
       }
-    },
-    toggleVisibility() {
-      this.$store.dispatch('metrics/toggleGlobalFiltersVisibility')
     }
   }
 }
