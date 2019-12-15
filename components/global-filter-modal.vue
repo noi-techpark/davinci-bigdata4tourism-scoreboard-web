@@ -32,9 +32,19 @@
         </div>
 
         <div
-          class="content p-4 pb-3 flex flex-wrap border-t border-b border-gray-400 text-black text-lg uppercase"
+          class="content p-4 pb-3 flex flex-wrap border-t border-b border-gray-400 text-black text-lg"
         >
-          <div v-for="filter in filters" :key="filter.name" class="mt-2">
+          <div class="mb-3">
+            Set global filters to get a more specific view on a certain subset
+            of the data set. It is possible to select multiple filter
+            combinations. Filters do apply immediately on the search result.
+          </div>
+
+          <div
+            v-for="filter in filters"
+            :key="filter.name"
+            class="mt-2 uppercase"
+          >
             <div>{{ filter.name }}</div>
             <SelectableButton
               v-for="data in filter.values"

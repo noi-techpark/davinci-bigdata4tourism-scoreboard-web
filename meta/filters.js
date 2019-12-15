@@ -13,7 +13,7 @@ export default [
     })()
   },
   {
-    name: 'types',
+    name: 'type of inquiry',
     values: [
       { text: 'Requests', value: 'booking:false' },
       { text: 'Bookings', value: 'booking:true AND cancellation:false' },
@@ -21,7 +21,7 @@ export default [
     ]
   },
   {
-    name: 'categories',
+    name: 'accomodation category',
     values: [
       { text: 'Hotel 1-3 stars', value: 'hotel 1-3 stelle' },
       { text: 'Hotel 4-5 stars', value: 'hotel 4-5 stelle' },
@@ -31,7 +31,7 @@ export default [
     ]
   },
   {
-    name: 'families',
+    name: 'type of guest',
     values: [
       { text: 'Unaccompanied', value: 'adults:1 AND children:0' },
       { text: 'Groups without children', value: 'adults:>2 AND children:0' },
