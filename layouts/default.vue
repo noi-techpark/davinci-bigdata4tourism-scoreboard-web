@@ -40,7 +40,7 @@
       >
         <div class="m-4 md:m-5 flex flex-col">
           <div class="mb-3 text-base md:text-2xl font-bold">
-            &copy; {{ year }} BigData4Tourism - a project form NOI Techpark
+            &copy; {{ year }} BigData4Tourism - a project from NOI Techpark
           </div>
           <div
             class="flex flex-col sm:flex-row leading-relaxed text-xs md:text-base"
