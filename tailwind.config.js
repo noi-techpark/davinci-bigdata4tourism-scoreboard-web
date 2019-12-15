@@ -46,6 +46,9 @@ module.exports = {
       metric6: {
         '500': 'hsl(268, 37%, 42%)',
       },
+      metric7: {
+        '500': 'hsl(193, 27%, 49%)',
+      },
       filterActive: {
         '500': 'hsl(43, 100%, 38%)',
       },

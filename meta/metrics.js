@@ -56,5 +56,12 @@ export default [
     title: 'Length of stay',
     description: 'Length of stay.',
     component: 'length-of-stay'
+  },
+  {
+    id: 'metric7',
+    title: 'Data quality',
+    description:
+      'This metric shows how many sources uploaded data to the database in a specific timeframe.',
+    component: 'data-quality'
   }
 ]
