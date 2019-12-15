@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!visible"
-    class="sticky top-0 z-2000 bg-white border-2 border-black mb-3"
+    class="sticky top-0 z-2000 bg-white border border-black mb-3"
   >
     <Modal>
       <button
