@@ -10,7 +10,7 @@
       Loading map data...
     </div>
     <div v-if="geojson != null" class="metric-map mt-5">
-      <Map :zoom="4">
+      <Map @moveend="moveend" :center="mapCenter" :zoom="mapZoom">
         <template v-slot:layers>
           <l-choropleth-layer
             :data="choroplethData"
@@ -89,12 +89,12 @@ export default {
     Map,
     StatsContainer
   },
+  mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
   data() {
     return {
       geojson: null
     }
   },
-  mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
   computed: {
     chartData() {
       if (this.metric.results == null) {
@@ -156,12 +156,23 @@ export default {
     },
     colorScale() {
       return ['e7d090', 'e9ae7b', 'de7062']
+    },
+    mapCenter() {
+      return this.$store.getters['metrics/currentMetric'].map.center
+    },
+    mapZoom() {
+      return this.$store.getters['metrics/currentMetric'].map.zoom
     }
   },
   mounted() {
     import('@/assets/geojson/world.geo.json').then(
       (data) => (this.geojson = data.default)
     )
+  },
+  methods: {
+    moveend({ center, zoom }) {
+      this.$store.dispatch('metrics/movemap', { center, zoom })
+    }
   }
 }
 </script>

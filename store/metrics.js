@@ -67,6 +67,12 @@ export const mutations = {
   closeMetric(state) {
     state.openMetric = null
   },
+  movemap(state, { center, zoom }) {
+    const index = state.openMetric
+    const metrics = [...state.metrics]
+    metrics[index] = { ...metrics[index], map: { center, zoom } }
+    state.metrics = metrics
+  },
   toggleGlobalFilter(state, { name, value }) {
     const filter = [...state.globalFilters[name]]
     const index = filter.findIndex((i) => i === value)
@@ -126,6 +132,9 @@ export const actions = {
       // eslint-disable-next-line
       console.error(err)
     }
+  },
+  movemap({ commit }, { center, zoom }) {
+    commit('movemap', { center, zoom })
   },
   toggleGlobalFilter({ commit }, { name, value }) {
     commit('resetMetrics')

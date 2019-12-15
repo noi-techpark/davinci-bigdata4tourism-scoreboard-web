@@ -29,13 +29,27 @@ export default [
     id: 'metric4',
     title: 'Origin',
     description: 'Countries of origin.',
-    component: 'country-of-origin'
+    component: 'country-of-origin',
+    map: {
+      center: {
+        lat: 46.65,
+        lng: 11.35
+      },
+      zoom: 4
+    }
   },
   {
     id: 'metric5',
     title: 'Target',
     description: 'Target areas.',
-    component: 'target-areas'
+    component: 'target-areas',
+    map: {
+      center: {
+        lat: 46.65,
+        lng: 11.35
+      },
+      zoom: 9
+    }
   },
   {
     id: 'metric6',
