@@ -72,11 +72,11 @@ export default {
       const max = result[esConfig.propMax]
       return [
         {
-          title: 'Min',
+          title: 'Min. sources',
           value: min
         },
         {
-          title: 'Max',
+          title: 'Max. sources',
           value: max
         }
       ]

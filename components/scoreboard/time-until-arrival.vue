@@ -64,15 +64,15 @@ export default {
       const result = this.metric.results[0]
       return [
         {
-          title: 'Min.',
+          title: 'Min. days',
           value: result[esConfig.propMin]
         },
         {
-          title: 'Max.',
+          title: 'Max. days',
           value: result[esConfig.propMax]
         },
         {
-          title: 'Average',
+          title: 'Average days',
           value: result[esConfig.propAvg]
         }
       ]

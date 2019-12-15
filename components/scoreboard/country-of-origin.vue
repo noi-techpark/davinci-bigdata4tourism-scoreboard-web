@@ -141,12 +141,12 @@ export default {
       const result = this.metric.results[0]
       return [
         {
-          title: 'Countries',
-          value: result[esConfig.propCountryCount]
-        },
-        {
           title: 'Total',
           value: result[esConfig.propTotal]
+        },
+        {
+          title: 'Countries',
+          value: result[esConfig.propCountryCount]
         },
         ...buildTopCountries(result)
       ]

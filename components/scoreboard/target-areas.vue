@@ -139,12 +139,12 @@ export default {
       const result = this.metric.results[0]
       return [
         {
-          title: 'Different target areas',
-          value: result[esConfig.propAreaCount]
-        },
-        {
           title: 'Total',
           value: result[esConfig.propTotal]
+        },
+        {
+          title: 'Different target areas',
+          value: result[esConfig.propAreaCount]
         },
         ...buildTopAreas(result)
       ]
