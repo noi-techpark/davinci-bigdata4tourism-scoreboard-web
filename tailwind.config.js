@@ -100,6 +100,10 @@ module.exports = {
       fontSize: {
         '7xl': '5rem',
         '8xl': '6rem'
+      },
+      zIndex: {
+        '1100': '1100',
+        '2000': '2000'
       }
     }
   },

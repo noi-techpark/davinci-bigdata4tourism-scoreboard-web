@@ -103,9 +103,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.z-2000 {
-  z-index: 2000;
-}
-</style>
