@@ -68,16 +68,18 @@ export default {
       }
 
       const result = this.metric.results[0]
-      const min = result[esConfig.propMin]
-      const max = result[esConfig.propMax]
       return [
         {
+          title: 'Total',
+          value: result[esConfig.propTotal]
+        },
+        {
           title: 'Min. sources',
-          value: min
+          value: result[esConfig.propMin]
         },
         {
           title: 'Max. sources',
-          value: max
+          value: result[esConfig.propMax]
         }
       ]
     }

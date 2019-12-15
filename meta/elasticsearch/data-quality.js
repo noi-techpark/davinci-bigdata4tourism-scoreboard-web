@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 
+export const propTotal = 'total'
 export const propMax = 'max'
 export const propMin = 'min'
 export const propDateHistogram = 'dateHistogram'
@@ -29,6 +30,7 @@ export const query = {
 
 export const resultBuilder = (response) => {
   const result = {
+    [propTotal]: response.hits.total,
     [propMin]: Infinity,
     [propMax]: 0,
     [propDateHistogram]: {
