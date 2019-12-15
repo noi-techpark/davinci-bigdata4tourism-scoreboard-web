@@ -1,6 +1,7 @@
 export default [
   {
     name: 'years',
+    title: 'years',
     values: (() => {
       const currentYear = new Date().getFullYear()
 
@@ -13,7 +14,8 @@ export default [
     })()
   },
   {
-    name: 'type of inquiry',
+    name: 'types',
+    title: 'type of inquiry',
     values: [
       { text: 'Requests', value: 'booking:false' },
       { text: 'Bookings', value: 'booking:true AND cancellation:false' },
@@ -21,7 +23,8 @@ export default [
     ]
   },
   {
-    name: 'accomodation category',
+    name: 'categories',
+    title: 'accomodation category',
     values: [
       { text: 'Hotel 1-3 stars', value: 'hotel 1-3 stelle' },
       { text: 'Hotel 4-5 stars', value: 'hotel 4-5 stelle' },
@@ -31,7 +34,8 @@ export default [
     ]
   },
   {
-    name: 'type of guest',
+    name: 'families',
+    title: 'type of guest',
     values: [
       { text: 'Unaccompanied', value: 'adults:1 AND children:0' },
       { text: 'Groups without children', value: 'adults:>2 AND children:0' },
@@ -47,6 +51,7 @@ export default [
   },
   {
     name: 'countries',
+    title: 'countries',
     values: [
       { text: 'Italy', value: 'country.name:Italy' },
       { text: 'Germany', value: 'country.name:Germany' },

@@ -45,7 +45,7 @@
             :key="filter.name"
             class="mt-2 uppercase"
           >
-            <div>{{ filter.name }}</div>
+            <div>{{ filter.title }}</div>
             <SelectableButton
               v-for="data in filter.values"
               :key="data.value"
