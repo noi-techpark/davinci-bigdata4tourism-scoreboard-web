@@ -1,23 +1,24 @@
 <template>
   <StatsContainer>
     <GaugeList :gauges="gauges"></GaugeList>
-    <BarChart :chartData="chartData" :options="chartOptions"></BarChart>
+    <LineChart :chartData="chartData" :options="chartOptions"></LineChart>
   </StatsContainer>
 </template>
 
 <script>
 import provideDataMixin from './mixins/scoreboard-data.mixin'
-import BarChart from '@/components/charts/bar.vue'
+import { chartRgba64 } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
+import LineChart from '@/components/charts/year.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
-import * as esConfig from '@/meta/elasticsearch/time-until-arrival'
+import * as esConfig from '@/meta/elasticsearch/data-quality'
 import * as filters from '@/meta/filters'
 
 export default {
   components: {
-    BarChart,
     GaugeList,
+    LineChart,
     StatsContainer
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
@@ -27,15 +28,16 @@ export default {
         return null
       }
 
-      const result = this.metric.results[0]
-      const days = result[esConfig.propDays]
+      const dateHistogram = this.metric.results[0][esConfig.propDateHistogram]
       return {
-        labels: days.map((day) => day.name),
+        labels: dateHistogram.labels,
         datasets: [
           {
-            data: days.map((day) => day.value),
-            fill: false,
-            borderWidth: 1
+            label: 'Sources',
+            steppedLine: true,
+            data: dateHistogram.data,
+            borderColor: chartRgba64[0],
+            fill: false
           }
         ]
       }
@@ -45,11 +47,15 @@ export default {
         legend: {
           display: false
         },
+        scales: {
+          yAxes: [
+            {
+              ticks: { beginAtZero: true, stepSize: 1 }
+            }
+          ]
+        },
         maintainAspectRatio: false,
         responsive: true,
-        scales: {
-          yAxes: [{ ticks: { beginAtZero: true } }]
-        },
         title: {
           display: true,
           text: this.metric.title
@@ -64,16 +70,16 @@ export default {
       const result = this.metric.results[0]
       return [
         {
-          title: 'Min. days',
+          title: 'Total',
+          value: result[esConfig.propTotal]
+        },
+        {
+          title: 'Min. sources',
           value: result[esConfig.propMin]
         },
         {
-          title: 'Max. days',
+          title: 'Max. sources',
           value: result[esConfig.propMax]
-        },
-        {
-          title: 'Average days',
-          value: result[esConfig.propAvg]
         }
       ]
     }

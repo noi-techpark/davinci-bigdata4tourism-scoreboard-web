@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!visible"
-    class="sticky top-0 z-2000 bg-white border-2 border-black mb-3"
+    class="sticky top-0 z-2000 bg-white border border-black mb-3"
   >
     <Modal>
       <button
@@ -32,10 +32,20 @@
         </div>
 
         <div
-          class="content p-4 pb-3 flex flex-wrap border-t border-b border-gray-400 text-black text-lg uppercase"
+          class="content p-4 pb-3 flex flex-wrap border-t border-b border-gray-400 text-black text-lg"
         >
-          <div v-for="filter in filters" :key="filter.name" class="mt-2">
-            <div>{{ filter.name }}</div>
+          <div class="mb-3">
+            Set global filters to get a more specific view on a certain subset
+            of the data set. It is possible to select multiple filter
+            combinations. Filters do apply immediately on the search result.
+          </div>
+
+          <div
+            v-for="filter in filters"
+            :key="filter.name"
+            class="mt-2 uppercase"
+          >
+            <div>{{ filter.title }}</div>
             <SelectableButton
               v-for="data in filter.values"
               :key="data.value"
@@ -99,16 +109,7 @@ export default {
       return () => {
         this.$store.dispatch('metrics/toggleGlobalFilter', { name, value })
       }
-    },
-    toggleVisibility() {
-      this.$store.dispatch('metrics/toggleGlobalFiltersVisibility')
     }
   }
 }
 </script>
-
-<style scoped>
-.z-2000 {
-  z-index: 2000;
-}
-</style>

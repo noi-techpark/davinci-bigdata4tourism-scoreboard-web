@@ -40,7 +40,7 @@
       >
         <div class="m-4 md:m-5 flex flex-col">
           <div class="mb-3 text-base md:text-2xl font-bold">
-            &copy; {{ year }} BigData4Tourism - a project form NOI Techpark
+            &copy; {{ year }} BigData4Tourism - a project from NOI Techpark
           </div>
           <div
             class="flex flex-col sm:flex-row leading-relaxed text-xs md:text-base"
@@ -75,6 +75,27 @@
                 >Christian Gapp</a
               >
             </div>
+            <div class="text-left xl:text-right text-xs md:text-sm mb-3">
+              Based on
+              <a
+                href="https://innovation.davinci.bz.it/"
+                class="hover:underline"
+                >Innovation Scoreboard</a
+              >
+              by
+              <a href="https://aboutbits.it/" class="hover:underline"
+                >About Bits</a
+              >
+            </div>
+            <div class="text-left xl:text-right">
+              <GithubButton
+                href="https://github.com/noi-techpark/davinci-bigdata4tourism-scoreboard-web/fork"
+                data-size="large"
+                data-show-count="true"
+                aria-label="Fork noi-techpark/davinci-bigdata4tourism-scoreboard-web on GitHub"
+                >Fork</GithubButton
+              >
+            </div>
           </div>
           <div class="flex-1 order-last xl:order-first flex justify-end">
             <a href="https://davinci.bz.it"
@@ -93,7 +114,12 @@
 </template>
 
 <script>
+import GithubButton from 'vue-github-button'
+
 export default {
+  components: {
+    GithubButton
+  },
   computed: {
     year() {
       return new Date().getUTCFullYear()

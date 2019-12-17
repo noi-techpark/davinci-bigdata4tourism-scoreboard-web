@@ -5,7 +5,7 @@
       <Spinner
         v-if="metric.loading"
         :containerClass="
-          'absolute bg-gray-500 flex justify-center w-full h-full min-h-100'
+          'absolute bg-gray-500 flex justify-center w-full h-full min-h-100 z-1100'
         "
       ></Spinner>
       <div v-if="metric.loadError" class="text-error-500">

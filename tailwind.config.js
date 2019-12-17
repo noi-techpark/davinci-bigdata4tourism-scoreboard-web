@@ -46,6 +46,9 @@ module.exports = {
       metric6: {
         '500': 'hsl(268, 37%, 42%)',
       },
+      metric7: {
+        '500': 'hsl(193, 27%, 49%)',
+      },
       filterActive: {
         '500': 'hsl(43, 100%, 38%)',
       },
@@ -100,6 +103,10 @@ module.exports = {
       fontSize: {
         '7xl': '5rem',
         '8xl': '6rem'
+      },
+      zIndex: {
+        '1100': '1100',
+        '2000': '2000'
       }
     }
   },

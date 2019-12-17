@@ -54,9 +54,6 @@ export default {
     selectedIndex() {
       return this.$store.state.metrics.openMetric
     },
-    loaded() {
-      return this.$store.state.metrics.loaded
-    },
     marginClasses() {
       return 'ml-2 mr-2 xl:ml-0 xl:mr-0'
     },

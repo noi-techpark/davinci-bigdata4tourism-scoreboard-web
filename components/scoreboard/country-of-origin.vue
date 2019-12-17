@@ -5,6 +5,44 @@
       :chartData="chartData"
       :options="chartOptions"
     ></HorizontalBarChart>
+
+    <div v-if="geojson == null">
+      Loading map data...
+    </div>
+    <div v-if="geojson != null" class="metric-map mt-5">
+      <Map @moveend="moveend" :center="mapCenter" :zoom="mapZoom">
+        <template v-slot:layers>
+          <l-choropleth-layer
+            :data="choroplethData"
+            :geojson="geojson"
+            :colorScale="colorScale"
+            :value="{
+              key: 'value',
+              metric: 'visitors'
+            }"
+            geojson-id-key="iso_a2"
+            title-key="name"
+            id-key="code"
+          >
+            <template slot-scope="props">
+              <l-info-control
+                :item="props.currentItem"
+                :unit="props.unit"
+                title="Target area"
+                placeholder="Hover over an area"
+              />
+              <l-reference-chart
+                :colorScale="colorScale"
+                :min="props.min"
+                :max="props.max"
+                title="Visitors"
+                position="topright"
+              />
+            </template>
+          </l-choropleth-layer>
+        </template>
+      </Map>
+    </div>
   </StatsContainer>
 </template>
 
@@ -17,6 +55,7 @@ import {
 } from '@/components/charts/color-util'
 import GaugeList from '@/components/charts/gauge-list.vue'
 import HorizontalBarChart from '@/components/charts/group.vue'
+import Map from '@/components/map/map.vue'
 import StatsContainer from '@/components/stats-container.vue'
 
 import * as esConfig from '@/meta/elasticsearch/country-of-origin'
@@ -47,9 +86,15 @@ export default {
   components: {
     GaugeList,
     HorizontalBarChart,
+    Map,
     StatsContainer
   },
   mixins: [provideDataMixin(esConfig, filters.applyQueryFilters)],
+  data() {
+    return {
+      geojson: null
+    }
+  },
   computed: {
     chartData() {
       if (this.metric.results == null) {
@@ -96,15 +141,37 @@ export default {
       const result = this.metric.results[0]
       return [
         {
-          title: 'Countries',
-          value: result[esConfig.propCountryCount]
-        },
-        {
           title: 'Total',
           value: result[esConfig.propTotal]
         },
+        {
+          title: 'Countries',
+          value: result[esConfig.propCountryCount]
+        },
         ...buildTopCountries(result)
       ]
+    },
+    choroplethData() {
+      return this.$store.state.metrics.metrics[4].results[0].countries
+    },
+    colorScale() {
+      return ['e7d090', 'e9ae7b', 'de7062']
+    },
+    mapCenter() {
+      return this.$store.getters['metrics/currentMetric'].map.center
+    },
+    mapZoom() {
+      return this.$store.getters['metrics/currentMetric'].map.zoom
+    }
+  },
+  mounted() {
+    import('@/assets/geojson/world.geo.json').then(
+      (data) => (this.geojson = data.default)
+    )
+  },
+  methods: {
+    moveend({ center, zoom }) {
+      this.$store.dispatch('metrics/movemap', { center, zoom })
     }
   }
 }

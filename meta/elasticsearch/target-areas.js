@@ -1,4 +1,6 @@
 export const propAreaCount = 'areaCount'
+export const propAreas = 'areas'
+export const propIstat = 'istat'
 export const propTopAreas = 'topAreas'
 export const propTotal = 'total'
 
@@ -9,12 +11,19 @@ export const query = {
         field: 'destination.name'
       }
     },
-    [propTopAreas]: {
+    [propAreas]: {
       terms: {
         field: 'destination.name',
-        size: 15,
+        size: 150,
         order: {
           _count: 'desc'
+        }
+      },
+      aggs: {
+        [propIstat]: {
+          terms: {
+            field: 'destination.code'
+          }
         }
       }
     }
@@ -23,24 +32,26 @@ export const query = {
 }
 
 export const resultBuilder = (response) => {
-  const topAreas = buildTopAreas(response)
-  const total = topAreas.reduce((prev, curr) => prev + curr.value, 0)
+  const areas = buildAreas(response)
+  const topAreas = areas.slice(0, 15)
+  const topTotal = topAreas.reduce((prev, curr) => prev + curr.value, 0)
+  const others = topAreas.reduce((prev, curr) => prev + curr.value, 0)
+  topAreas.push({
+    name: 'Others',
+    value: others
+  })
 
   return {
     [propAreaCount]: response.aggregations[propAreaCount].value,
+    [propAreas]: areas,
     [propTopAreas]: topAreas,
-    [propTotal]: total
+    [propTotal]: topTotal
   }
 }
 
-const buildTopAreas = (response) => {
-  const result = response.aggregations[propTopAreas].buckets.map((c) => ({
+const buildAreas = (response) =>
+  response.aggregations[propAreas].buckets.map((c) => ({
+    istat: c[propIstat].buckets[0].key,
     name: c.key,
     value: c.doc_count
   }))
-  result.push({
-    name: 'Others',
-    value: response.aggregations[propTopAreas].sum_other_doc_count
-  })
-  return result
-}

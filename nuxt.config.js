@@ -1,3 +1,5 @@
+import webpack from 'webpack'
+
 const colorUtil = require('./tailwind.color-util')
 
 export default {
@@ -30,9 +32,9 @@ export default {
   plugins: [
     '~/plugins/axios',
     '~/plugins/es-client',
-    '~/plugins/filters',
     '~/plugins/portal',
     '~/plugins/register-metrics',
+    '~/plugins/vue2-leaflet-chloropleth.js',
     '~/plugins/vue2-leaflet-markercluster.js',
   ],
   buildModules: [
@@ -48,6 +50,7 @@ export default {
     baseURL: process.env.esHost || 'https://bigdata4tourism.davinci.bz.it/elasticsearch/'
   },
   purgeCSS: {
+    whitelistPatterns: [/leaflet/],
     whitelist: [
       'text-metric0-500',
       'text-metric1-500',
@@ -56,6 +59,7 @@ export default {
       'text-metric4-500',
       'text-metric5-500',
       'text-metric6-500',
+      'text-metric7-500',
       'text-filterActive-500',
       'hover:text-metric0-500',
       'hover:text-metric1-500',
@@ -64,6 +68,7 @@ export default {
       'hover:text-metric4-500',
       'hover:text-metric5-500',
       'hover:text-metric6-500',
+      'hover:text-metric7-500',
       'hover:text-filterActive-500',
       'bg-metric0-500',
       'bg-metric1-500',
@@ -72,6 +77,7 @@ export default {
       'bg-metric4-500',
       'bg-metric5-500',
       'bg-metric6-500',
+      'bg-metric7-500',
       'bg-filterActive-500',
       'border-metric0-500',
       'border-metric1-500',
@@ -80,6 +86,7 @@ export default {
       'border-metric4-500',
       'border-metric5-500',
       'border-metric6-500',
+      'border-metric7-500',
       'border-filterActive-500',
       'hover:border-metric0-500',
       'hover:border-metric1-500',
@@ -88,11 +95,15 @@ export default {
       'hover:border-metric4-500',
       'hover:border-metric5-500',
       'hover:border-metric6-500',
+      'hover:border-metric7-500',
       'hover:border-filterActive-500',
       ...colorUtil.postCss
     ],
   },
   build: {
+    plugins: [
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ],
     extend(config, ctx) {
         if (ctx.isDev && ctx.isClient) {
           config.module.rules.push({
