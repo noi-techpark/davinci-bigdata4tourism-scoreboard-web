@@ -4,6 +4,8 @@ export const propCountries = 'countries'
 export const propTopCountries = 'topCountries'
 export const propTotal = 'total'
 
+const topResultCount = 15
+
 export const query = {
   aggs: {
     [propCountryCount]: {
@@ -33,9 +35,11 @@ export const query = {
 
 export const resultBuilder = (response) => {
   const countries = buildCountries(response)
-  const topCountries = countries.slice(0, 15)
+  const topCountries = countries.slice(0, topResultCount)
   const topTotal = topCountries.reduce((prev, curr) => prev + curr.value, 0)
-  const others = topCountries.reduce((prev, curr) => prev + curr.value, 0)
+  const others = countries
+    .slice(topResultCount)
+    .reduce((prev, curr) => prev + curr.value, 0)
   topCountries.push({
     name: 'Others',
     value: others
