@@ -37,7 +37,7 @@ export default [
     name: 'families',
     title: 'type of guest',
     values: [
-      { text: 'Unaccompanied', value: 'adults:1 AND children:0' },
+      { text: 'Single adult', value: 'adults:1 AND children:0' },
       { text: 'Groups without children', value: 'adults:>2 AND children:0' },
       { text: 'Couples without children', value: 'adults:2 AND children:0' },
       { text: 'Singles with children', value: 'adults:1 AND children:>0' },

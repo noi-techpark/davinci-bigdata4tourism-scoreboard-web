@@ -39,8 +39,8 @@ export default {
         labels: dateHistogram.labels,
         datasets: [
           {
-            label: 'Unaccompanied',
-            data: dateHistogram[esConfig.propUnaccompanied],
+            label: 'Single adult',
+            data: dateHistogram[esConfig.propSingleAdult],
             backgroundColor: chartRgba64[0],
             borderColor: borderRgba64[0],
             hoverBackgroundColor: hoverRgba64[0],
@@ -124,8 +124,8 @@ export default {
         {
           classes: `bg-chart-0 border-chart-0 text-white`,
           decimalPlaces: 2,
-          title: 'Unaccompanied',
-          value: percentage(total, result[esConfig.propUnaccompanied].value),
+          title: 'Single adult',
+          value: percentage(total, result[esConfig.propSingleAdult].value),
           unit: '%'
         },
         {

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-export const propUnaccompanied = 'unaccompanied'
+export const propSingleAdult = 'singleAdult'
 export const propCouplesWithoutChildren = 'couplesWithoutChildren'
 export const propGroupsWithoutChildren = 'groupsWithoutChildren'
 export const propSinglesWithChildren = 'singlesWithChildren'
@@ -14,7 +14,7 @@ export const query = {
     familySituation: {
       filters: {
         filters: {
-          [propUnaccompanied]: {
+          [propSingleAdult]: {
             query_string: {
               query: 'adults:1 AND children:0',
               analyze_wildcard: true,
@@ -63,7 +63,7 @@ export const query = {
         [propByType]: {
           filters: {
             filters: {
-              [propUnaccompanied]: {
+              [propSingleAdult]: {
                 query_string: {
                   query: 'adults:1 AND children:0',
                   analyze_wildcard: true,
@@ -108,9 +108,9 @@ export const query = {
 }
 
 export const resultBuilder = (response) => ({
-  [propUnaccompanied]: {
+  [propSingleAdult]: {
     value:
-      response.aggregations.familySituation.buckets[propUnaccompanied].doc_count
+      response.aggregations.familySituation.buckets[propSingleAdult].doc_count
   },
   [propCouplesWithoutChildren]: {
     value:
@@ -136,7 +136,7 @@ export const resultBuilder = (response) => ({
   [propDateHistogram]: (() => {
     const result = {
       labels: [],
-      [propUnaccompanied]: [],
+      [propSingleAdult]: [],
       [propCouplesWithoutChildren]: [],
       [propGroupsWithoutChildren]: [],
       [propSinglesWithChildren]: [],
@@ -148,7 +148,7 @@ export const resultBuilder = (response) => ({
 
       result.labels.push(label)
 
-      result[propUnaccompanied].push(buckets[propUnaccompanied].doc_count)
+      result[propSingleAdult].push(buckets[propSingleAdult].doc_count)
       result[propCouplesWithoutChildren].push(
         buckets[propCouplesWithoutChildren].doc_count
       )
