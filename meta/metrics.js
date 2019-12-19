@@ -24,7 +24,7 @@ export default [
     id: 'metric3',
     title: 'Family',
     description:
-      'This metric provides information about the different types of guests. "Unaccompanied" means one adult and no children. "Groups without children" means more than 2 adults and no children. "Couples without children" means two adults and no children. "Singles with children" means one adult and one or more children. "Families" means two adults and one or more children.',
+      'This metric provides information about the different types of guests. "Single adult" means one adult and no children. "Groups without children" means more than 2 adults and no children. "Couples without children" means two adults and no children. "Singles with children" means one adult and one or more children. "Families" means two adults and one or more children.',
     component: 'family-situation'
   },
   {

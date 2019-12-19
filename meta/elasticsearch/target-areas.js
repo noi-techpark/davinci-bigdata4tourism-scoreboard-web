@@ -4,6 +4,8 @@ export const propIstat = 'istat'
 export const propTopAreas = 'topAreas'
 export const propTotal = 'total'
 
+const topResultCount = 15
+
 export const query = {
   aggs: {
     [propAreaCount]: {
@@ -33,9 +35,11 @@ export const query = {
 
 export const resultBuilder = (response) => {
   const areas = buildAreas(response)
-  const topAreas = areas.slice(0, 15)
+  const topAreas = areas.slice(0, topResultCount)
   const topTotal = topAreas.reduce((prev, curr) => prev + curr.value, 0)
-  const others = topAreas.reduce((prev, curr) => prev + curr.value, 0)
+  const others = areas
+    .slice(topResultCount)
+    .reduce((prev, curr) => prev + curr.value, 0)
   topAreas.push({
     name: 'Others',
     value: others
