@@ -21,8 +21,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-          cache: 'yarn'
+          cache: 'npm'
       - name: install
-        run: yarn install
+        run: npm install
       - name: test
-        run: yarn run test
+        run: npm run test
