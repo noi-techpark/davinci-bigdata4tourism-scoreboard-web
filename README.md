@@ -3,7 +3,7 @@ The tourism scoreboard is a project that aims to visualize the BigData4Tourism d
 
 This repository contains the source code for the tourism scoreboard frontend.
 
-[![CI](https://github.com/noi-techpark/davinci-bigdata4tourism-scoreboard-web/actions/workflows/ci.yml/badge.svg)](https://github.com/noi-techpark/davinci-bigdata4tourism-scoreboard-web/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/noi-techpark/davinci-bigdata4tourism-scoreboard-web/actions/workflows/main.yml/badge.svg)](https://github.com/noi-techpark/davinci-bigdata4tourism-scoreboard-web/actions/workflows/main.yml)
 
 ## Table of contents
 
