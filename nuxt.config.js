@@ -22,12 +22,30 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap' }
+    ],
+    script: [
+      {
+        src: '/matomo/matomo-analytics.js',
+        type: 'text/plain',
+        "data-cookiecategory": "targeting"
+      },
+      {
+        src: '/cookieconsent/cookieconsent.js',
+        defer: true,
+        body: true
+      },
+      {
+        src: '/cookieconsent/cookieconsent-init.js',
+        defer: true,
+        body: true
+      }
     ]
   },
   loading: { color: '#fff' },
   css: [
     '~/css/main.css',
     '~/assets/css/vue2-leaflet-markercluster.css',
+    '~/static/cookieconsent/cookieconsent.css'
   ],
   plugins: [
     '~/plugins/axios',
