@@ -7,7 +7,7 @@ services:
     volumes:
        - ./:/code
     working_dir: /code
-    command: npm run dev
+    command: sh -c "test -d node_modules || npm install; npm run dev"
     environment:
       HOST: 0.0.0.0
       ES_HOST: "https://bigdata4tourism.davinci.bz.it/elasticsearch/"
