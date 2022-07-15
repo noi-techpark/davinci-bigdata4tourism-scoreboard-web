@@ -21,7 +21,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap' },
+      { rel: 'stylesheet', href: '/cookieconsent/cookieconsent.css' }
     ],
     script: [
       {
@@ -44,8 +45,7 @@ export default {
   loading: { color: '#fff' },
   css: [
     '~/css/main.css',
-    '~/assets/css/vue2-leaflet-markercluster.css',
-    '~/static/cookieconsent/cookieconsent.css'
+    '~/assets/css/vue2-leaflet-markercluster.css'
   ],
   plugins: [
     '~/plugins/axios',
