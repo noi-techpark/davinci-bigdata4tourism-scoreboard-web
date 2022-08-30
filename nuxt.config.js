@@ -21,7 +21,7 @@ export default {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', href: 'https://fonts.testingmachine.eu/source-sans-pro/style.css' },
+            { rel: 'stylesheet', href: '/fonts/source-sans-pro/style.css' },
             { rel: 'stylesheet', href: '/cookieconsent/cookieconsent.css' }
         ],
         script: [{
