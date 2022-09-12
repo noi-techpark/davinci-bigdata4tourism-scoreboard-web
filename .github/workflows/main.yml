@@ -54,8 +54,12 @@ jobs:
     concurrency: deploy-prod
     env:
       AWS_S3_BUCKET_NAME : "prod-bigdata4tourism-web"
+      SCRIPTS_HOST: 'https://scripts.opendatahub.com'
     steps:
       - uses: actions/checkout@v2
+
+      - name: Change scripts host to prod
+        run: sed -i -e "s%https://scripts.opendatahub.testingmachine.eu%${{env.SCRIPTS_HOST}}%g" nuxt.config.js
 
       - name: Create .env file
         uses: noi-techpark/github-actions/env-file@v2
