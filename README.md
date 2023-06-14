@@ -118,13 +118,13 @@ docker-compose exec java /bin/sh -c "npm run test"
 
 ### Support
 
-For support, please contact [help@opendatahub.bz.it](mailto:help@opendatahub.bz.it).
+For support, please contact [help@opendatahub.com](mailto:help@opendatahub.com).
 
 ### Contributing
 
 If you'd like to contribute, please follow the following instructions:
 
-https://docs.opendatahub.bz.it/en/latest/guidelines/contributors.html
+https://docs.opendatahub.com/en/latest/guidelines/contributors.html
 
 ### Documentation
 
