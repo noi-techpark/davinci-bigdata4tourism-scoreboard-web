@@ -1,0 +1,16 @@
+version = 1
+SPDX-PackageName = "webcomp-tourism-detail"
+SPDX-PackageSupplier = "NOI Techpark <digital@noi.bz.it>"
+SPDX-PackageDownloadLocation = "https://github.com/noi-techpark/webcomp-tourism-detail"
+
+[[annotations]]
+path = [".github/**", "infrastructure/**", ".gitignore", ".pre-commit-config.yaml", "LICENSE.md", ".browserslistrc", ".editorconfig", ".eslintignore", ".prettierignore", ".prettierrc", "**.png", "**.svg", "**.json", ".env.example", "webcomp-tourism-detail.iml", ".babelrc", ".eslintrc.js", "components/**", "meta/**", "docker-compose.yml", "docker/dockerfile-node", "css/**", "test/**", "store/**", "static/title-mobile.jpg", "static/title-desktop.jpg", "static/screenshot_bd4t_filters.jpg", "static/efre-fesr.jpg", "static/efre-fesr.jpg", "static/favicon.ico"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "(c) NOI Techpark <digital@noi.bz.it>"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = "static/fonts/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2010, 2012 Adobe Systems Incorporated <http://www.adobe.com/>"
+SPDX-License-Identifier = "OFL-1.1"

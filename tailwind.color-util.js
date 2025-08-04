@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /**
  * This file provides utilities to add a bunch of color classes to tailwind.css and nuxt.
  */

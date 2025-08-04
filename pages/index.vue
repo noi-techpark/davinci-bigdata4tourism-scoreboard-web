@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 <template>
   <div class="my-5">
     <div class="title-container w-full flex flex-col">
@@ -10,15 +16,15 @@
       </div>
     </div>
 
-    <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
+    <!-- <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
       Filters
     </div>
     <GlobalFilterModal
       :filters="filters"
       :class="marginClasses"
-    ></GlobalFilterModal>
+    ></GlobalFilterModal> -->
 
-    <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
+    <!-- <div :class="['mt-3 text-xl text-semibold uppercase', marginClasses]">
       Metrics
     </div>
     <Tabs
@@ -26,23 +32,29 @@
       :selectedIndex="selectedIndex"
       :tabs="tabs"
       @tab-changes="openMetric($event)"
-    ></Tabs>
+    ></Tabs> -->
 
     <!-- eslint-disable-next-line -->
-    <component :is="currentComponent" :key="selectedIndex" class="tab"></component>
+    <!-- <component :is="currentComponent" :key="selectedIndex" class="tab"></component> -->
+
+    <div id="imgplaceholder"></div>
+    <div id="projectmessage">
+      Project concluded: For more info please write to
+      <a href="mailto:help@opendatahub.com">help@opendatahub.com</a>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import filters from '@/meta/filters'
-import GlobalFilterModal from '@/components/global-filter-modal.vue'
-import Tabs from '@/components/tabs/tabs.vue'
+// import GlobalFilterModal from '@/components/global-filter-modal.vue'
+// import Tabs from '@/components/tabs/tabs.vue'
 
 export default {
   components: {
-    GlobalFilterModal,
-    Tabs
+    // GlobalFilterModal,
+    // Tabs
   },
   computed: {
     currentComponent() {
@@ -97,5 +109,15 @@ export default {
 
 .title-box {
   background-color: rgba(255, 255, 255, 0.7);
+}
+
+#imgplaceholder {
+  min-height: 835px;
+  background-image: url('/screenshot_bd4t_filters.jpg');
+}
+
+#projectmessage {
+  font-size: larger;
+  font-weight: 400;
 }
 </style>

@@ -10,7 +10,7 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - uses: noi-techpark/github-actions/npm-test@v2
@@ -19,7 +19,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
 
   deploy-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.ref == 'refs/heads/main'
     needs: test
     concurrency: deploy-test
@@ -48,7 +48,7 @@ jobs:
           folder: ./dist
 
   deploy-prod:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.ref == 'refs/heads/prod'
     needs: test
     concurrency: deploy-prod

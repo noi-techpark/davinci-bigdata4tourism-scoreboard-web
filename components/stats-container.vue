@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 <template>
   <div :class="['min-h-160', borderClass]">
     <div class="mb-3">{{ metric.description }}</div>

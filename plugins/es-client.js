@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 const countHeaders = { headers: { 'Content-Type': 'application/json' } }
 const msearchHeaders = { headers: { 'Content-Type': 'application/x-ndjson' } }
 const searchHeaders = { headers: { 'Content-Type': 'application/json' } }

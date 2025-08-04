@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import Vue from 'vue'
 import MetricRequestsBookingsCancellations from '../components/scoreboard/requests-bookings-cancellations.vue'
 import MetricTimeUntilArrival from '../components/scoreboard/time-until-arrival.vue'

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 export const propAvg = 'avg'
 export const propMin = 'min'
 export const propMax = 'max'

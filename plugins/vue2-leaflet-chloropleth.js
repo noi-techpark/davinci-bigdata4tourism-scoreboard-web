@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import Vue from 'vue'
 import * as L from 'leaflet'
 import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'

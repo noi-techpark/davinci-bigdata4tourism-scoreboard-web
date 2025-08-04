@@ -1,2 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2017 Julián Perelli 
+ * SPDX-License-Identifier: MIT
+ */
+
 @import 'leaflet.markercluster/dist/MarkerCluster.css';
 @import 'leaflet.markercluster/dist/MarkerCluster.Default.css';

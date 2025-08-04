@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 export const AXES_FONT_FAMILY = '"Source Sans Pro", sans-serif'
 export const AXES_FONT_COLOR = '#000'
 export const AXES_FONT_SIZE = 15
