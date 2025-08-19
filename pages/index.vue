@@ -6,6 +6,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <template>
   <div class="my-5">
+    <div class="projectmessage">
+      Project concluded: For more info please write to
+      <a href="mailto:help@opendatahub.com">help@opendatahub.com</a><br /><br />
+    </div>
     <div class="title-container w-full flex flex-col">
       <div class="title-box my-4 mr-6">
         <div
@@ -36,12 +40,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!-- eslint-disable-next-line -->
     <!-- <component :is="currentComponent" :key="selectedIndex" class="tab"></component> -->
-
     <div id="imgplaceholder"></div>
-    <div id="projectmessage">
-      Project concluded: For more info please write to
-      <a href="mailto:help@opendatahub.com">help@opendatahub.com</a>
-    </div>
   </div>
 </template>
 
@@ -116,8 +115,11 @@ export default {
   background-image: url('/screenshot_bd4t_filters.jpg');
 }
 
-#projectmessage {
+.projectmessage {
   font-size: larger;
-  font-weight: 400;
+  font-weight: 600;
+}
+.projectmessage a:hover {
+  text-decoration: underline;
 }
 </style>
