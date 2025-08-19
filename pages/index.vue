@@ -116,7 +116,7 @@ export default {
 }
 
 .projectmessage {
-  font-size: larger;
+  font-size: x-large;
   font-weight: 600;
 }
 .projectmessage a:hover {
