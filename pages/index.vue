@@ -44,7 +44,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   </div>
 </template>
 
-<script>
+<!-- <script>
 import { mapMutations } from 'vuex'
 import filters from '@/meta/filters'
 // import GlobalFilterModal from '@/components/global-filter-modal.vue'
@@ -82,7 +82,7 @@ export default {
     })
   }
 }
-</script>
+</script> -->
 
 <style scoped>
 .title-container {
