@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <template>
   <div class="my-5">
     <div class="projectmessage">
-      Project concluded: For more info please write to
+      <b>Project concluded:</b> For more info please write to
       <a href="mailto:help@opendatahub.com">help@opendatahub.com</a><br /><br />
     </div>
     <div class="title-container w-full flex flex-col">
@@ -117,7 +117,6 @@ export default {
 
 .projectmessage {
   font-size: x-large;
-  font-weight: 600;
 }
 .projectmessage a:hover {
   text-decoration: underline;
